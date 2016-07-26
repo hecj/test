@@ -1,0 +1,228 @@
+
+微信名称：多美惠通多美贷测试号
+登录邮箱：2775491854@qq.com
+微信密码：duomeidaiCS
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于多美贷测试研发使用，需要后期认证。
+【多美贷】
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+微信名称：多美惠通多美贷测试号
+登录邮箱：2775491854@qq.com
+微信密码：duomeidaiCS
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于多美贷测试研发使用，需要后期认证。
+
+官微公众号(pro)
+shichangbu@bjdmtz.com
+shichangbu
+
+
+10004:返利-现金卷扣除帐号
+
+vpn:
+地址114.66.196.197
+用户名 hechaojie
+密码 V5LxX153bxg
+
+
+=======微信开放平台============
+https://open.weixin.qq.com
+账号：25693780@qq.com	
+密码：8chaojie
+
+========支付宝账户===============
+支付宝账号 boxamazing@boxamazing.com
+密码 dxdiag0821
+支付密码 Dxdiag0821  ->  Dxdiag1029
+https://b.alipay.com/newIndex.htm
+
+合作者身份(PID): 2088021553870711
+安全校验码(Key): m104kkbz73e95fzqjzu9i0ny5n12l2ko
+
+即时到账收款
+https://b.alipay.com/order/productDetail.htm?productId=2012111200373124
+批量付款到支付宝账户
+https://b.alipay.com/order/productDetail.htm?productId=2011052500326597&tabId=2#ps-tabinfo-hash
+
+=========企业邮箱账户============
+boxamazing@boxamazing.com
+Box1029
+
+微信服务号已认证
+
+【多美贷】
+
+shichangbu@bjdmtz.com
+shichangbu
+wx.token = 902447497adf4f449c48520ad36ca5b7
+wx.appid = wx8a3ebaf4720dc73e
+wx.appsecret = dc7f494e565ba8bc0be7f0e97c09895b
+
+    "access_token": "B4nBIMN6gXSvHpcv4P9XyWFpjc-oOazHDjA3xyD4kxaU0B-i88O-Aq8Cflylo0cpk6fsBoRP7AtwUmFhjW7gQOMVJmAhnzIi7fKDJ4EyynA",
+
+微信名称：多美惠通多美贷开发号
+
+登录邮箱：1660512827@qq.com
+
+微信密码：duomeidaiKF
+
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+
+微信名称：多美惠通多美贷测试号
+
+登录邮箱：2775491854@qq.com
+
+微信密码：duomeidaiCS
+
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于多美贷测试研发使用，需要后期认证。
+
+
+【多美贷经纪人】
+
+微信名称： 多美惠通多美贷经纪人
+
+登录邮箱：2573816312@qq.com
+
+微信密码：jingjirenDW
+
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使线上线下业务结合的更加紧密，帮助用户是实现提前预约的功能，为用户提供简单快捷的服务。此账号对外使用。
+
+
+AppID(应用ID) wx5efabef15749d3c6
+AppSecret(应用密钥) 9c1519225e67143c450469df8aa94a9f
+yBoiSkH0R7YkWJzyRvcTWJa1oxVVmUjIPfG-QZUKBm4gXRI9VPg57pqZc1PCsg7XbsomVrVWXtyaN0UpA6HK5pe9TrRBEj-6dmWVBFjorGk
+
+微信名称： 多美惠通多美贷经纪人测试
+
+登录邮箱：3104325756@qq.com
+
+微信密码：jingjirenCS
+
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使线上线下业务结合的更加紧密，帮助用户是实现提前预约的功能。此账号作为对内部经纪人测试使用。
+
+
+微信名称： 多美惠通多美贷经纪人开发
+
+登录邮箱：3127206147@qq.com
+
+微信密码：jingjirenKF
+
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使线上线下业务结合的更加紧密，帮助用户是实现提前预约的功能。该账号用于内部开发研究使用。
+
+授权回调域  微信回调地址
+boxamazingtest.tunnel.mobi
+官网网址
+http://boxamazingtest.tunnel.mobi/
+
+
+test ssh root/Dxdiag0730
+
+===============支付宝接口=====boxamazing@boxamazing.com====================
+盒儿（北京）网络科技有限公司
+注册号：110105019630935
+
+问题一： 我 爸爸 的  名字是
+答案：爸爸1130
+问题二： 我 妈妈  的   名字是
+答案：妈妈1130
+问题三： 我  妻子 的名字   是
+答案：妻子1130
+ 
+请确认安全保护问题关闭
+本次设置的安全保护问题将会覆盖您原有的安全保护问题。
+请牢记以下安全保护问题！它们可用于重置密码，以及证书申请、安装等操作。
+我妈妈的名字是：	妈妈1130
+我爸爸的名字是：	爸爸1130
+我妻子的名字是：	妻子1130
+======================================
+
+QQ: 
+3352605508
+boxamazing0821
+http://connect.qq.com/
+备注：1.验证标签
+微博:
+boxamazing@boxamazing.com
+boxamazing0821
+http://open.weibo.com/
+ 
+微信:
+wxopen@boxamazing.com
+boxamazing0821
+https://open.weixin.qq.com/
+ 
+
+===============
+刘慧敏 改test环境时间
+
+
+=======微博第三方扽了key
+App Key：3183973326
+App Sercet：eb0c33bb8bd1fceb4cef6bee20393810
+
+
+=====生产环境=====
+帐号：www.boxamazing.com
+密码：Dxdiag1027
+
+mysql
+root/3dFgQjBloQ0=
+
+创建用户：
+grant all privileges on box.* to hecj@182.92.79.161 identified by '8chaojie';
+grant all privileges on box_admin.* to hecj@182.92.79.161 identified by '8chaojie';
+flush privileges;
+
+
+支付宝即时到帐订单退款查询接口：
+http://doc.open.alipay.com/doc2/detail?treeId=66&articleId=103571&docType=1
+
+支付宝查询接口：
+http://doc.open.alipay.com/doc2/apiList?docType=4
+
+
+多美禅道密码：
+admin/xy7086256
+
+
+10：41
+
+19012405
+
+FrontPasswordAction.ajaxLogin
+
+/data/duomeidai-web/run/WEB-INF/newPage/front/activity-message-detail.jsp
+
+http://www.duomeidai.com/activityAnniver.action
+
+发布
+sh /data/deploy-script/home_deploy.sh dmd/trunk/dmd-framework/framework-app-home framework-app-home
+
+/data/svntmp/dmd/trunk/duomeidai/duomeidai-web
+
+sh /data/deploy-script/home_deploy.sh dmd/trunk/duomeidai/duomeidai-web duomeidai-web
+
+
+七牛云帐号：
+dmd_hzhb@bjdmtz.com
+dmdhzhb1
+
+
+URL(服务器地址) http://test.broker.duomeidai.com/wx
+Token(令牌) duomeidai
+EncodingAESKey(消息加解密密钥) wUoOLTlKzZqbyJ193ITeUjGp2fosoU0QZabXvjjQW2f
+消息加解密方式 明文模式
+http://test.red.duomeidai.com/wx
+
+svn : root	Akjdf87YY72k
+
+

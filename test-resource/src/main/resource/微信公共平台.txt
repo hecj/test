@@ -1,0 +1,20 @@
+
+【多美贷】
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+
+  http://dev.red.duomeidai.com/?wxOpenId=oKMiujmHEdQzWVrFeeHGpOHdYs1s
+  
+  http://dev.red.duomeidai.com/#/project/list
+  
+  
+  1.
+  
+appid : wxe27e1431f2b1fa4e
+secret : 84ad9e7876457a31b5a6eb00de52f713  
+  
+  
+  

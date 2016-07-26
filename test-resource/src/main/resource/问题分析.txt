@@ -1,0 +1,415 @@
+1、融360接口
+
+2、自动投标
+
+3、地推
+
+生成二维码  
+
+生成：/web/a/qrcode/genlist 
+二维码表：qr_code
+
+查询list
+路径：http://localhost:8083/web/a/qrcode/list?exports_count_end=&exports_count_from=&page=1&size=10&status=1&use_end=&use_from=
+根据经济人Id查询二维码
+1. select id from  qr_code  where broker_id= ?
+表：db_dmwx.qr_code (二维码表) 
+
+ 
+
+多美理财师 
+
+查询list：
+路径：web/a/brokerlist
+1.select distinct br.id
+from user br inner join broker_role_relation brr on br.id=brr.broker_id
+where brr.role_type = 1
+order by br.is_hired asc, br.update_at desc;
+2.select br.*　from user br where br.id in (ids);
+  查询t_person表中用户姓名
+总结：role_type	角色类型(1多美理财师，2地推商户，3小明星)
+select * from broker_role_relation t where t.broker_id = 18890405;
+注：一个经济人在经纪人角色表查到2条记录：说明经纪人可以是多美理财师也是商户
+
+添加理财师 ：
+根据手机号码获取注册用户信息
+/web/a/tuser
+select id from t_user where mobilephone = ?
+select u.* from t_user u where u.id in (ids);
+select p.* from t_person p where p.userid = uid;
+添加：-------add begin---------------
+/web/a/adduser
+select u.* from t_user u where u.id = userid;
+select id from t_persion p where p.userid = userid;
+select id from user where t_userid = ?;
+select p.* from t_persion p where p.id = ?;
+#角色为经济人
+select id from  broker_role_relation  where  broker_id = userid  and role_type= 1 ;
+select brr.* from broker_role_relation brr where brr.id in (ids);
+insert user表
+增加地推经纪人角色 及 初始化配置
+select * from  broker_sys_config where k= 'commission_reg_amount';
+select * from  broker_sys_config where k= 'commission_auth_amount';
+select * from  broker_sys_config where k= 'commission_invist_rate';
+insert db_dmwx.broker_role_relation经济人角色表
+insert duomeidai.broker_commission经纪人提成账户表
+-------------add end----------------------------
+编辑理财师 ：http://localhost:8083/web/a/updateuser?brokerType=0&id=30000091&isHired=0
+update操作 更新经济人类别和状态
+
+表：db_dmwx.user (经纪人表)
+描述：必须是多美贷平台注册过的用户。取用户表数据
+================================================================
+第三方网站：
+list
+路径：web/a/third/list
+表：duomeidai.t_business (第三方网站表)
+select id from duomeidai.t_business b where getIdsByDynamicCondition;
+select b.* from duomeidai.t_business b where b.id in (ids);
+
+添加：
+搜索：
+http://localhost:8083/web/a/tuser?mobilePhone=15811372713
+select id from t_user where mobilephone = ?
+select u.* from t_user u where u.id in (ids);
+select p.* from t_person p where p.userid = uid;
+提交：
+http://localhost:8083/web/a/third/save?businessName=%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99&id=30000197
+select u.* from t_user u where u.id = ?;
+select id from t_person p where p.userid = ?;
+select p.* from t_person p where p.id = ?;
+#t_rebate_invite_code 返利邀请随机码表 【什么收获插入邀请码的？】 注：好像是实名认证之后才有邀请吗，具体逻辑未看
+select id from t_rebate_invite_code where invester = ?[userid];
+select c.* from t_rebate_invite_code c where c.id = ?;
+insert t_business
+
+查看：
+http://localhost:8083/web/a/third/detail?id=7&page=1&size=10
+select b.*　from duomeidai.t_business b where t.id = ?;
+#t_rebate_invite_relation表：邀请对应关系表
+#获取被邀请的人Id
+select id from duomeidai.t_rebate_invite_relation r where r.invester = 18901124;
+#获取被邀请的人对象
+select r.* from duomeidai.t_rebate_invite_relation r where r.id in (ids);
+#查询被邀请的人用户对象
+select u.* from duomeidai.t_user u where u.id in (ids);
+#查询投资用户的Id集合
+select id from duomeidai.t_invest i where i.investor in (useridList);
+#查询所有用户的投资对象集合
+select i.* from duomeidai.t_invest i where i.id in (ids);
+#统计所有表的bid集合
+select b.* from duomeidai.t_borrow b.id in (ids);
+
+分析结果：
+商户[第三方网站]表：duomeidai.t_business  注：存放商户信息  注：渠道信息存到这张表？
+                              关键字段：
+                                    userId：代表人id
+                                    userPhone：代表人手机号
+   邀请对应关系表：duomeidai.t_rebate_invite_relation   注：商户与用户对应关系     商户 --一对多–>用户
+                                  关键字段：
+                                           invester 邀请人[商户uid]
+                                           invitee   被邀请人[用户uid]
+   返利邀请码随机表：duomeidai.t_rebate_invite_code   【数据来源未知】
+                                  关键字段：
+                                           invester 邀请人用户id
+                                           randCode 邀请码
+
+======================================
+
+地推商户：
+路径：web/a/promotion/list
+#role_type=2表示商户
+#查询所有的地推商户的uid集合
+select broker_id  from  broker_role_relation  where  is_delete = ?[0]  and role_type= ?[2];
+for循环----------------
+#查询用户t_user集合
+#查询用户信息t_person集合
+#用户和经济人关系表db_dmwx.user_broker_relation
+#broker_tuser_id 经济人id
+#t_user_id 客户id
+#broker_user_type 客户经纪人类型(1:职业理财;3:注册;3:投资)
+select id from user_broker_relation  where  t_user_id = ?  and   broker_user_type = 1 and  is_delete= 0 ;
+#查询用户t_user信息
+select * from t_user u where u.id = ?;
+#查询经济人t_person信息
+select * from t_person p where p.id = ?;
+
+返回：用户t_user集合 t_person集合 
+           经济人t_person集合
+--------------------
+
+查询商户信息：
+http://localhost:8083/web/a/tuser/broker/detail?tUserId=18890405
+#查询t_user信息
+#查询t_person信息
+查询用户经济人关系表[1条记录]
+select id from user_broker_relation  where  t_user_id = ?  and   broker_user_type = 1   and  is_delete=0;
+#查询经济人id
+#
+
+
+查询客户列表：
+http://localhost:8083/web/a/promotion/userlist/18890405?page=1&size=10
+
+
+
+===================================
+客户列表
+list列表
+http://localhost:8080/web/a/tuser/list?page=1&size=10
+根据手机号查询经纪人
+select id from t_user where mobilephone = ?
+根据推荐者姓名查询
+select id from t_user where username = ?
+查询用户
+select u.* from t_user u where u.id = ?
+根据用户uid查询经纪人id
+select id from user u.userid = ?[userid]
+根据投资时间获取投资id
+select id from t_invest i where i.investtime><
+根据投资id获取投资对象集合
+select i from t_invest i where i.id in (ids);
+获取投资人uid集合
+根据id和注册时间查询
+select id from t_user t where t.id and t.注册时间
+查询所有经济人id
+根据经纪人id集合查询经纪人对象集合
+查询所有的经纪人表的所有用户uids集合
+select id from user_broker_relation  where  broker_tuser_id = ?   and is_delete=?
+
+客户经纪人变更记录：
+http://localhost:8083/web/a/log/list/18890388?page=1&size=10&tUserId=18890388
+经纪人变更历史
+select id from  user_broker_relationhistory  where  t_user_id = ?
+经济人历史变更
+select * from  user_broker_relationhistory  where  id in (ids);
+=================================
+表：
+
+根据手机号查  t_user表 查userid
+根据姓名查t_person表  查userid
+
+
+=============================
+客户列表：
+user 经济人表
+t_user 用户表
+user_broker_relation 客户与经纪人关系表
+==============================
+地推商户
+查询地推商户
+select (broker_id)  from  db_dmwx.broker_role_relation  where  is_delete = 0 and role_type= 2;
+商户与客户关系
+select * from promotion_relation t where t.borker_user_id = 18891421;
+user_id 客户
+borker_user_id 地推商户
+客户与经济人关系
+select * from user_broker_relation t where t.t_user_id = 18891421;
+broker_tuser_id 经济人
+t_user_id 地推商户
+select * from user_broker_relation t where t.t_user_id = 18891424;
+broker_tuser_id 经济人
+t_user_id 客户
+
+=========================================================
+多美理财师 查询多美理财师 role_type = 1表示理财师
+1.select distinct br.id
+from user br inner join broker_role_relation brr on br.id=brr.broker_id
+where brr.role_type = 1
+order by br.is_hired asc, br.update_at desc;
+
+
+============================
+第三方网站
+所有网站
+select * from duomeidai.t_business b;
+网站与客户关系表
+select * from duomeidai.t_rebate_invite_relation where invester = 18891216;
+客户投资记录
+select * from t_invest t where t.investor in (ids);
+
+
+==================================
+地推商户->对账明细 
+http://localhost:8083/web/a/promotion/foundrecordlist/18890405?page=1&size=10
+经纪人资金流水历史表
+SELECT * FROM  duomeidai.broker_commission_history  WHERE  broker_id= 18890405 ORDER BY create_at DESC;
+=======broker_commission=经纪人提成表==broker_commission_history==经纪人提成历史表======
+id                 ID
+broker_id          经纪人id
+total_sum          提成账户总金额
+invest_sum         已经用于投资金额
+commission_sum     已经用于提现金额
+usable_sum         当前可用提现账户金额
+cash_status        提现状态(默认1 启动 2 禁止)
+update_at          创建人
+update_by          创建时间
+create_at          修改人
+create_by          修改时间
+
+
+
+#########db设计################
+db_dmwx.qr_code 
+增加'有效提成时间' valid_day int(3)
+
+前端
+邀请列表
+1.总注册人数/总实名人数。
+
+投资列表（商户）（新增）
+2.投资总额
+
+我的邀请码
+3.显示二维码
+我的账户
+4.累计的注册人数、总投资金额
+
+后台
+一、	小工具-生成二维码
+增加'有效提成时间'
+
+二、	经纪人管理-第三方渠道（新增）
+1.定时任务统计
+2.客户列表
+3.excel导出
+4.编辑：仅可对备注进行编辑。
+
+三、	经纪人管理-地推商家
+1.增加【导出excel】按钮
+2.增加显示字段（统计）
+3.编辑 修改返点和备注信息
+
+四、	运营客户管理
+1.将原本的“客户管理”更名为“运营客户管理”。
+2.显示运营客户（修改查询逻辑）
+
+五、	市场客户管理-客户列表（新增）
+1.客户列表（客户默认为市场客户）
+2.下发客户至运营
+3.excel导出
+
+六、	市场客户管理-投资列表（新增）
+1.客户投资列表（市场用户）
+2.导出excel
+
+七、	其他
+1.主、子二维码绑定逻辑修改
+2.将页面上提成账户去掉
+
+
+何超杰
+昨日：地推商户db整理（已完成）
+今日：方案整理及评审
+
+
+
+=============经纪人平台注册分析============================================
+1.插入t_user
+2.更新t_user source字段
+3.t_rebate_invite_code 邀请码表
+ 	 手机号邀请
+ 	 邀请码邀请
+4.添加邀请关系  t_rebate_invite_relation
+5.回调经纪人平台
+
+6.扫描二维码注册记录商家与客户关系 db_dmwx.`promotion_relation`
+邀请码：t_rebate_invite_code
+
+7.用户通过URL获取邀请码   
+    a)如果该用户邀请码已存在 直接返回
+	b)如果不存在邀请码,生成邀请码之后插入数据库返回
+
+获取邀请url
+String com.longdai.action.front.FrontInviteAction.inviteUrl() throws Exception
+
+官网首页
+String com.longdai.action.front.FrontMyFinanceAction.index()
+
+
+========
+duomeidai-service-1.85
+duomeidai-admin-1.82
+
+
+
+
+
+
+任务拆分：
+
+ 【地推】数据库表设计
+ 【接口】总注册总实名制统计
+【接口】商户统计列表接口
+【地推接口-前端】显示二维码
+【地推接口-前端】累计的注册人数、总投资金额
+
+【地推接口-后端】二维码有效提成时间
+【地推接口-后端】计算商家有效提成时间
+【地推需求-后端-第三方渠道】定时任务统计
+【地推接口-后端-第三方渠道】客户列表
+【地推需求-后端-第三方渠道】excel导出
+【地推接口-后端-第三方渠道】编辑
+【地推需求-后端-地推商家】导出excel
+【地推接口-后端-地推商家】商家列表
+【地推接口-后端-地推商家】编辑商家
+【地推接口-后端-运营客户管理】运营客户列表
+【地推接口-后端-市场客户管理】客户列表
+【地推需求-后端-市场客户管理】导出excel
+【地推接口-后端-市场客户管理】下发客户至运营
+【地推接口-后端-市场客户管理】投资列表】投资列表
+【地推接口-后端-市场客户管理】投资列表】导出excel
+【地推需求】主、子二维码绑定逻辑修改】
+
+
+
+duomeidai-service-1.86
+duomeidai-web-2.50
+duomeidai-admin-1.83
+dmd/tags/duomeidai-service/duomeidai-service-1.86
+dmd/tags/duomeidai-web/duomeidai-web-2.50
+
+
+
+ 148,160.79
+ 146,450.79
+
+1710
+
+290
+
+何超杰：
+昨日：
+今日：
+
+duomeidai-web-2.58
+
+duomeidai-web-2.58
+
+dmd/tags/duomeidai-web/duomeidai-web-2.58
+
+
+dmd/tags/duomeidai-web/duomeidai-web-2.60
+dmd/tags/duomeidai-web/duomeidai-web-2.60
+dmd/tags/duomeidai-admin/duomeidai-admin-1.90
+dmd/tags/duomeidai-admin/duomeidai-admin-1.90
+
+18891502
+
+=====================
+第三方渠道 和 商家 属于市场
+
+何超杰：
+昨日：
+   1. 3h 845【后台--接口】运营客户管理--运营客户列表 90%
+   2. 2h 865【后端】经纪人管理--地推商家--商家列表--接口--总注册人数 100%
+   3. 2h 868【后端】经纪人管理--地推商家--商家列表--接口--总投资额（元）100%
+今日：
+   1. 3h 867【后端】经纪人管理--地推商家--商家列表--接口--总投资笔数
+   2. 3h 866【后端】经纪人管理--地推商家--商家列表--接口--总实名数
+   3. 3h 844【后台--接口】经纪人管理--地推商家--编辑商家
+   
+
+   
+   
+   

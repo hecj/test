@@ -1,0 +1,171 @@
+1、融360
+
+2、自动投标 
+
+3、经纪人-地推：
+用户表：用户类型(运营/市场)
+            市场(渠道/地推商家)
+
+下发运营：修改用户状态
+
+-------经纪人-地推--------begin---------
+
+----前台
+邀请列表
+	统计总注册人数/总实名人数
+
+我的邀请码
+	显示邀请二维码、邀请代码、邀请链接
+投资列表
+
+----后台
+
+小工具-生成二维码
+           生成二维码增加有效提成时间
+           列表增加有效提成时间
+
+经纪人管理-第三方渠道 [显示未下发的用户]
+	渠道列表
+	更新列表信息
+	编辑备注
+	导出excel
+	定时任务统计渠道列表信息
+
+经纪人管理-地推商家 [显示未下发的用户]
+           商家列表 
+           更新列表数据
+           编辑返点和备注
+           导出excel
+           定时任务统计商家列表信息
+
+运营客户管理 [显示下发到运营的客户]
+	客户列表
+
+市场客户管理-客户列表 [显示渠道/商户]
+	客户信息列表 [显示所有客户]
+	下发客户至运营
+	客户信息导出excel
+
+市场客户管理-投资列表 
+	客户信息列表      [只显示投资的客户]
+	客户信息导出excel
+	客户投资列表
+	客户投资导出excel
+
+----------end----------
+
+third_channel_count
+渠道统计表：（新增表）job
+渠道Id
+渠道名称
+注册人数
+实名人数
+首投人数
+首投总额（元）
+总投资次数
+总投资总额（元）
+备注
+操作
+更新时间
+
+
+第三方渠道：
+user.broker_type [经纪人类型] 兼职、全职
+
+
+#商家
+select * from user t where t.mobile=18888888219; 
+#经济人
+select * from user t where t.mobile=13439504367;
+
+select * from duomeidai.t_user t where t.id = 30000126;
+
+select * from broker_role_relation t where t.broker_id  in (30000126,18890405);
+
+
+多美经济人：
+经济人角色关系表 
+broker_role_relation.role_type[经纪人角色类型]  0:经纪人，
+
+地推商户：
+
+
+
+====================
+经纪人平台首页跳转
+1.<url-pattern>/app/*</url-pattern>
+2.<from>/</from>
+  <to>/app/login/index</to>
+3./login/index
+
+
+
+
+
+ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
+
+    查看列：desc 表名;
+    修改表名：alter table t_book rename to bbb;
+    添加列：alter table 表名 add column 列名 varchar(30);
+    删除列：alter table 表名 drop column 列名;
+    修改列名MySQL： alter table bbb change nnnnn hh int;
+    修改列名SQLServer：exec sp_rename't_student.name','nn','column';
+    修改列名Oracle：lter table bbb rename column nnnnn to hh int;
+    修改列属性：alter table t_book modify name varchar(22); 
+
+sp_rename：SQLServer 内置的存储过程，用与修改表的定义。
+
+
+
+MySQL 查看约束，添加约束，删除约束 添加列，修改列，删除列
+
+    查看表的字段信息：desc 表名;
+    查看表的所有信息：show create table 表名;
+    添加主键约束：alter table 表名 add constraint 主键 （形如：PK_表名） primary key 表名(主键字段);
+    添加外键约束：alter table 从表 add constraint 外键（形如：FK_从表_主表） foreign key 从表(外键字段) references 主表(主键字段);
+    删除主键约束：alter table 表名 drop primary key;
+    删除外键约束：alter table 表名 drop foreign key 外键（区分大小写）;
+
+    修改表名：alter table t_book rename to bbb;
+    添加列：alter table 表名 add column 列名 varchar(30);
+    删除列：alter table 表名 drop column 列名;
+    修改列名MySQL： alter table bbb change nnnnn hh int;
+    修改列名SQLServer：exec sp_rename't_student.name','nn','column';
+    修改列名Oracle：alter table bbb rename column nnnnn to hh int;
+    修改列属性：alter table t_book modify name varchar(22);
+
+    给表增加注视：alter table card comment ='水浒英雄卡'; 
+
+    增加一个字段，默认为空
+  alter table user add COLUMN new1 VARCHAR(20) DEFAULT NULL; (www.111cn.net)
+     增加一个字段，默认不能为空
+  alter table user add COLUMN new2 VARCHAR(20) NOT NULL; 
+  
+     添加带注释列语句
+  alter table directory add index_url varchar(256) default null comment '章节书目链接' after dir_url;  
+     删除列语句
+  alter table directory drop index_url; 
+  
+  
+duomeidai-service-1.89
+duomeidai-web-2.55
+duomeidai-admin-1.87
+
+
+
+duomeidai-service-1.90
+
+
+============
+
+dmd/tags/duomeidai-service/duomeidai-service-1.91
+duomeidai-admin-1.88
+duomeidai-web-2.56
+
+dmd/tags/duomeidai-web/duomeidai-web-2.56
+dmd/tags/duomeidai-admin/duomeidai-admin-1.88
+
+
+
+
+

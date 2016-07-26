@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dal>
+	<route>
+		<object name="com.hecj.test.model.Student" listenerClass=""
+			strategyProperty="">
+
+			<map name="getStuName" sqlitem="select name,age from student where id=? "
+				keyProperty="borrowId,investAmount" valueProperty="name,age"
+				keyColumn="id" />
+
+			<map name="getIds" sqlitem="select id from student where id=? "
+				keyProperty="id" valueProperty="id"
+				keyColumn="id" />
+
+
+			<dbStrategy name="mutiDS"
+				clasz="com.gemantic.dal.route.strategy.DefaultStrategy">
+				<pattern value="[0-9]$" group="testDS" />
+			</dbStrategy>
+		</object>
+	</route>
+</dal>

@@ -1,0 +1,131 @@
+
+今日剩余已提额度：
+select sum(amount) totalExtract from t_deposit_fund where flag = 1 and depositId =  1  and investTime/1000 >= UNIX_TIMESTAMP('2015-12-24 00:00:00')
+and investTime/1000 <= UNIX_TIMESTAMP('2015-12-24 11:55:00')
+
+累计加入用户及金额：
+select count(distinct(userId)) as userNum, sum(amount) as totalAmount from t_deposit_fund where depositId = 1 and flag=0
+
+加入记录
+select f.investTime as investTime , u.username as username , f.amount as amount from t_deposit_fund f , t_user u where f.userId = u.id and depositId = 1 and f.flag = 0
+
+
+累计收益：
+select sum(income) totalIncome , sum(principal) totalPrincipal from t_deposit_property
+
+
+加入记录：
+http://localhost:8080/currentPlanDetailList.action?paramMap.pageNo=1&paramMap.pageSize=12&paramMap.depositId=1&paramMap.time=1450935042925
+
+
+提取:redempDeposit.action
+
+赎回
+int com.longdai.service.DepositPropertyService.redemptDeposit(long userId, int amount, long depositId) throws Exception
+
+
+currentPlanDetail.action
+
+ --- 查询用户可赎回金额
+ select (t1.invest-t2.redemp) amount from (select ifnull(sum(amount),0) invest from t_deposit_fund a where a.userId=" + userId
+				+ " and FROM_UNIXTIME(a.investTime/1000,'%Y-%m-%d %H:%i:%s') < DATE_SUB(CURDATE(),INTERVAL " + days + "-1 DAY) and a.flag=0) t1 ,"
+				+ "(select ifnull(sum(amount),0) redemp from t_deposit_fund a where a.userId=" + userId 
+				//+ " and FROM_UNIXTIME(a.investTime/1000,'%Y-%m-%d %H:%i:%s') < DATE_SUB(CURDATE(),INTERVAL 3 DAY)" 
+				+ " and a.flag=1) t2
+
+
+
+// 转账开始
+			TrsTransferResp trsResp = thirdPartPaymentService.accountTransfer(
+					ThirdPartyConfig.PAY_EASY_TRANS_CODE, // transCode
+					DateUtil.YYYY_MM_DD_MM_HH_SS.format(new Date()), // reqTime
+					ThirdPartyConfig.PAY_EASY_OPERATION_CODE, // operationCode
+					serlNum, // serlNum
+					"", // authId
+					String.valueOf(userId), // transOutUser
+					"", // transOutUserMobile
+					"", // transOutUserIdType
+					"", // transOutUserId
+					ThirdPartyConfig.PAY_EASY_V_DEPOSIT, // transInUser,
+					"", // transInUserMobile
+					"", // transInUserIdType
+					"", // transInUserId
+					amount.toString(), // transAmount
+					"0.00", // transOutUserFee,
+					"0.00", // transInUserFee,
+					PayEasyConfig.pay_easy_withdaral_default_pin, // pin,
+					PayEasyConfig.pay_easy_merdata6, // groupId,
+					PayEasyConfig.pay_easy_merdata7, // branchId,
+					"", // merdata1
+					"");
+TrsTransferResp trsResp = thirdPartPaymentService.accountTransfer(
+					ThirdPartyConfig.PAY_EASY_TRANS_CODE, // transCode
+					DateUtil.YYYY_MM_DD_MM_HH_SS.format(new Date()), // reqTime
+					ThirdPartyConfig.PAY_EASY_OPERATION_CODE, // operationCode
+					serlNum, // serlNum
+					"", // authId
+					ThirdPartyConfig.PAY_EASY_V_DEPOSIT, // transOutUser
+					"", // transOutUserMobile
+					"", // transOutUserIdType
+					"", // transOutUserId
+					String.valueOf(userId), // transInUser,
+					"", // transInUserMobile
+					"", // transInUserIdType
+					"", // transInUserId
+					total.toString(), // transAmount
+					"0.00", // transOutUserFee,
+					"0.00", // transInUserFee,
+					PayEasyConfig.pay_easy_withdaral_default_pin, // pin,
+					PayEasyConfig.pay_easy_merdata6, // groupId,
+					PayEasyConfig.pay_easy_merdata7, // branchId,
+					"", // merdata1
+					"");
+
+
+
+ 净值：本金+收益
+
+
+currentPlanDetailList
+
+
+select t.time from t_board_game_lottery t where t.time > UNIX_TIMESTAMP("2015-12-25 00:00:00")*1000 order by t.time asc limit 0,1 ;
+
+#select UNIX_TIMESTAMP("2015-12-25 00:00:00") ;
+
+#select FROM_UNIXTIME(1450972800);
+
+select * from t_invest t where t.investTime < FROM_UNIXTIME(1451015950866/1000) and 
+UNIX_TIMESTAMP(t.investTime) >= UNIX_TIMESTAMP("2015-12-25 00:00:00") and t.investAmount >=100;
+
+select DISTINCT(u.id) user_id,u.mobilePhone,u.username,t.investAmount,t.investTime from t_invest t LEFT JOIN t_user u on (u.id = t.investor) where t.investTime < FROM_UNIXTIME(1451015950866/1000) and 
+UNIX_TIMESTAMP(t.investTime) >= UNIX_TIMESTAMP("2015-12-25 00:00:00") and t.investAmount >=100;
+
+
+# 查询第一个发礼包的
+select t.time from t_board_game_lottery t where t.time > UNIX_TIMESTAMP("2015-12-25 00:00:00")*1000 order by t.time asc limit 0,1 ;
+
+#查询
+select t.investor user_id,u.mobilePhone,u.username,t.investAmount,t.investTime
+ from t_invest t LEFT JOIN t_user u on (u.id = t.investor)
+ where ( t.investTime < FROM_UNIXTIME(1451015950866/1000) and 
+UNIX_TIMESTAMP(t.investTime) >= UNIX_TIMESTAMP("2015-12-25 00:00:00") ) and t.investAmount >=100 ;
+
+==========================
+select t_invest.*,u.* from t_invest left join t_user u on (u.id = t_invest.investor )    
+where 
+t_invest.investTime between '2015-12-25 00:00:00' and 
+FROM_UNIXTIME((select time from duomeidai.t_board_game_lottery where time > UNIX_TIMESTAMP('2015-12-24 23:59:59')*1000 order by time limit 1)/1000, '%Y-%m-%d %H:%i:%s')   
+and deadline in(1, 3, 6, 12) 
+and t_invest.investAmount >= 100 
+and t_invest.investor not in (select userID from t_board_game_lottery where time > UNIX_TIMESTAMP('2015-12-24 23:59:59')*1000) 
+
+=======================
+
+less 命令：
+:/01:27   回车：往下查找
+:?01:27   回车：往上查找
+
+
+
+

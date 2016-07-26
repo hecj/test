@@ -1,0 +1,20 @@
+多美
+
+生产前台    182.92.102.64   				 	root  		Kkgrjir^%^3FDknB
+生产后台    182.92.150.156                   	root  		lvOiefoim@#@j8
+生产数据库  duomeidai.mysql.rds.aliyuncs.com   webuser  	lkasdo8JLKjsdkh （限本地登陆）
+测试        192.168.1.237	               		root		lkuojou#(*K98)M)jI
+测试数据库  192.168.1.237						root		dmtz@lenovo
+开发   		192.168.1.235						root		Udj2kadkfj8s
+
+
+盒子
+
+生产    	182.92.79.161						root		Dxdiag1027
+生产数据库  182.92.79.161			 			root 		3dFgQjBloQ0=    （限本地登陆）
+测试		192.168.1.243						root		Dxdiag0730
+测试数据库  192.168.1.243						root		dxdiag
+开发		192.168.1.242						root 		K8s9U1kL#	
+
+
+jenkins用户名xiayu，密码xiayu123

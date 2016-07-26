@@ -1,0 +1,5 @@
+
+scallop core 
+scallop-core-1.5.jar ScallopClient.java 类加载资源
+
+scallop-binding-rmi-runtime-1.5.jar RMIObserver.java 调用资源中心

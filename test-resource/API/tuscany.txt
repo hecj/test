@@ -1,0 +1,45 @@
+
+app-economic-admin/src/main/webapp/WEB-INF/spring/applicationContext-client.xml
+
+	<!-- TLinkSourceService  -->
+	<bean id="tLinkSourceService"
+		class="com.gemantic.common.sca.service.SCAClientServiceFactory">
+		<property name="client" ref="scaClient" />
+		<property name="component" value="TLinkSourceServiceComponent" />
+		<property name="className"
+			value="com.dmtz.framework.user.service.TLinkSourceService" />
+	</bean>
+
+	<!-- TLinkSourceTotalService  -->
+	<bean id="tLinkSourceTotalService"
+		class="com.gemantic.common.sca.service.SCAClientServiceFactory">
+		<property name="client" ref="scaClient" />
+		<property name="component" value="TLinkSourceTotalServiceComponent" />
+		<property name="className"
+			value="com.dmtz.framework.user.service.TLinkSourceTotalService" />
+	</bean>
+
+
+------------------------------------------------------
+app-economic-admin/src/main/resources/client.composite
+
+	<component name = "TLinkSourceServiceComponent">
+    	<implementation.java class = "com.dmtz.sca.framework.user.client.TLinkSourceSCAClient"/>
+    	<reference name = "tLinkSourceService">
+    		<scallop:binding.rmi registryName = "tLinkSource-framework-user-service-rmi" serviceName="TLinkSourceRMIService"/>
+    	</reference>
+    </component>
+    
+    <component name = "TLinkSourceTotalServiceComponent">
+    	<implementation.java class = "com.dmtz.sca.framework.user.client.TLinkSourceTotalSCAClient"/>
+    	<reference name = "tLinkSourceTotalService">
+    		<scallop:binding.rmi registryName = "tLinkSourceTotal-framework-user-service-rmi" serviceName="TLinkSourceTotalRMIService"/>
+    	</reference>
+    </component>
+
+
+
+tLinkSource-framework-user-service-rmi
+tLinkSourceTotal-framework-user-service-rmi
+
+需注意get set生成规则情况

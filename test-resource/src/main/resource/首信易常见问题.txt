@@ -1,0 +1,37 @@
+
+联系人：
+先找->广武	 	18513955857
+姜华	82652626-6939	18301117806	894102748	账户、交易
+
+
+1.2015-8-26
+  a.兴业银行代扣-需2个小时返回结果
+  b.交易失败，(1003)账户321180126200856921余额不足
+  
+  
+  
+  [wangchao@pro_web logs]$ grep "2015082662125_u18920090_1724" catalina.out 
+2015/08/26 17:55:35,923 [INFO ] [http-bio-8080-exec-309] 
+[com.longdai.action.front.PayEasyAction.payEasyTrsCutPaymentAgentNotify(PayEasyAction.java:1101)] 
+ payEasyTrsCutPaymentAgentNotify decryptContentStr:{"transCode":"TRS001008","reqTime":"2015-08-26 17:55:00",
+ "operationCode":"20000","serlNum":"2015082662125_u18920090_1724","user":"18920090","mobile":"","idType":"01",
+ "id":"120104196501196327","accName":"叶丽影","accProvince":"北京市","accCity":"北京市","accBank":"兴业银行股份有限公司",
+ "accNum":"966666323558437616","accType":"00","accProp":"PR","amount":"250000.00",
+ "returnCode":"0222","returnMsg":"交易失败，(1003)账户321180126200856921余额不足","groupId":"7548","branchId":"duomei",
+ "merdata1":"","merdata2":""}
+ 
+ 1. 25w
+ 2. 兴业银行代扣2小时
+ 3. 提现，不需要手机验证码
+ 
+ 
+ 
+<div class="list_ly1" style="height:147px;overflow:hidden">
+<ul> </ul>
+</div>
+ 
+ 
+ 
+ 
+ 
+ 

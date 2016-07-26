@@ -1,0 +1,6 @@
+
+ctrl + m : 窗口最大化
+alt + 方向键 ： 移动代码
+alt + shift + r : 重命名变量
+ctrl + e : 切换窗口
+ctrl + o : 快速outline

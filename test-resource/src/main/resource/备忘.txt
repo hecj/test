@@ -1,0 +1,1072 @@
+待处理：投资金额是100的倍数  修改duomeidai-service模块
+
+
+
+
+
+
+
+
+平台开启自动投标自测：
+	1、单标测试。    通过
+	2、多标测试查询平台中发布的标问题。
+	3、多标测试排序问题。
+	4、多标测试投标规则问题。
+	5、测试可用余额，最大投标金额，剩余投标金额，50%投标金额，投标金额需被本标最低投资金额整除。
+	6、测试短信发送问题，关闭投标短信，发送投标短信，短信提醒等。
+	7、投标终止条件自测。
+	8、投标时出现异常，数据回滚是否正确，是否有脏数据产生?
+	9、开启投标是否走线程?
+	10、多用户同时开启，是否存在并发?
+	11、调用接口时出现字符串乱码，导致JSON解析异常，待解决。
+	
+后端发标启动投标任务：
+	1、投标用户排序规则，队列原则，先进先出。
+	2、一个标允许投多次。
+	3、投标金额是否正确。
+		
+		
+问题1：投标超过了50%。
+问题2:投标金额是起投金额的倍数?还是100的倍数?
+
+
+
+20150420 自动投标demo
+充值账户：18891065,18891062
+---------user-------------------
+  UID         telPhone	
+30000089	18600141141
+30000189	18600141212
+30000235    18800099999  余额不足
+PWD：123456 payPWD：111111
+
+
+------2015-4-20_v1---已发布test----
+framework-product-core-0.0.9 dmd/tags/framework-product-core/framework-product-core-0.0.9
+framework-product-service-0.0.10 dmd/tags/framework-product-service/framework-product-service-0.0.10
+duomeidai-service-1.77 dmd/tags/duomeidai-service/duomeidai-service-1.77
+duomeidai-web-2.39 dmd/tags/duomeidai-web/duomeidai-web-2.39
+duomeidai-admin-1.76 dmd/tags/duomeidai-admin/duomeidai-admin-1.76
+
+------2015-4-20_v2---不用发布test----
+duomeidai-web-2.40 dmd/tags/duomeidai-web/duomeidai-web-2.40
+
+----- 2015-4-20_v3---不用发布test----
+duomeidai-web-2.41 dmd/tags/duomeidai-web/duomeidai-web-2.41
+
+----- 2015-4-21_v1---已发布test----
+duomeidai-web-2.42 dmd/tags/duomeidai-web/duomeidai-web-2.42
+
+
+-------20150421------------
+18891463 test hechaojie 99,244.83
+
+账户余额： 99,244.83元
+冻结资金： 5,000.00元 返利余额： 0.00元
+可用余额： 94,244.83元 
+
+测试结果：
+单标测试通过
+50%测试通过
+
+
+测试规则：
+
+
+http://dev.broker.admin.duomeidai.com/web/menus/user#/client/list
+
+
+duomeidai-service-1.82
+duomeidai-web-2.47
+
+
+----------------------------
+duomeidai-service 1.84
+duomeidai-web-2.49
+duomeidai-admin-1.80
+
+dmd/tags/duomeidai-web/duomeidai-web-2.52
+duomeidai-web-2.52
+
+================================
+发布内容：
+1.先发sql脚本(建表语句,无初始化数据)，见附近。
+2.再发framework-product-service(服务)
+3.最后发duomeidai-web和duomeidai-admin
+
+影响：
+CA 
+增值服务
+
+
+duomeidai-web-2.53
+dmd/tags/duomeidai-web/duomeidai-web-2.53
+
+	
+	186****7582
+	
+	
+dev01
+192.168.1.235
+root
+Udj2kadkfj8s
+	
+---------20150521-------------
+framework-user-core-0.0.12
+
+duomeidai-service 1.93.1
+		
+sh /data/deploy-script/home_deploy.sh dmd/branches/duomeidai-web-2.61.1 duomeidai-web
+
+-------20150521——v1------------------------
+framework-user-service-0.0.13
+dmd/tags/framework-user-service/framework-user-service-0.0.13
+
+dmd/branches/duomeidai-web-2.61.1/target/duomeidai-web.war
+
+
+----------20150525--------
+duomeidai-service-1.93.2
+svn://svn.duomeidai.com/dmd/branches/duomeidai-web-2.61.1
+
+  
+------
+下发记录表
+
+insert into resources(name,resource) values('userIssuedNotes-framework-user-service-rmi','framework.user.service:9031');
+
+CREATE TABLE `user_issued_notes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `operator` bigint(20) DEFAULT NULL,
+  `issued_type` varchar(255) DEFAULT NULL,
+  `issued_at` bigint(20) DEFAULT NULL,
+  `create_at` bigint(20) DEFAULT NULL,
+  `update_at` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+ALTER TABLE `user_issued_notes` ADD INDEX index_user_issued_notes_user_id ( `user_id` );
+ALTER TABLE `user_issued_notes` ADD INDEX index_user_issued_notes_operator ( `operator` );
+
+
+-------20150526-------
+今天提交代码
+framework-user-core
+framework-user-service
+
+framework-user-core-0.0.13
+framework-user-service-0.0.14
+
+
+dmd/tags/app-economic-service/app-economic-service-0.0.16
+
+-------20150527-------
+app-economic-admin-0.0.39
+
+app-economic-home-0.0.36
+
+-----------v2
+dmd/tags/app-economic-admin/app-economic-admin-0.0.41
+dmd/tags/app-economic-admin/app-economic-admin-0.0.41
+dmd/tags/app-economic-home/app-economic-home-0.0.37
+dmd/tags/app-economic-home/app-economic-home-0.0.37
+
+
+---------------发布版本---------------------
+dmd/tags/app-economic-service/app-economic-service-0.0.16
+dmd/tags/app-economic-service/app-economic-service-0.0.16
+
+
+
+/app-economic-admin-0.0.42
+
+dmd/tags/app-economic-admin/app-economic-admin-0.0.42
+dmd/tags/app-economic-admin/app-economic-admin-0.0.42
+dmd/tags/app-economic-admin/app-economic-admin-0.0.42
+
+dmd/tags/app-economic-home/app-economic-home-0.0.37
+dmd/tags/app-economic-home/app-economic-home-0.0.37
+
+
+--------------PRO----------------------
+	
+dev.broker.duomeidai.com/login/index?wxOpenId=oKMiujmHEdQzWVrFeeHGpOHdYs1s	
+	
+	
+
+
+-------------------------------	 
+1.渠道统计不到数据
+2.市场客户无数据
+	 
+	 
+--------2015-6-4--------
+app-economic-core-0.0.14
+app-economic-service-0.0.17
+
+
+---------------自动投标规则更改-----------------
+需求描述
+1、将每个项目每个人最高能投50%改为100%，即一个标可由一个人全部投完。
+2、将单笔投标金额最高限制为100000改为不设上限，即单笔投标金额没有上限（可在程序里设置为10亿）。
+3、将每个项目自动投标循环10次改为1次，即每个标自动投标的用户使用自动投标为1次。
+4、在页面上的规则里将第三条去掉（“3、自动投标单笔投标上限为人民币100000元，且不得高于项目融资金额的50%。”去掉）。
+
+-----------2015-6-8---------
+duomeidai-service-2.8
+duomeidai-web-2.86
+
+
+-----经纪人微信--------
+http://dev.broker.duomeidai.com/login/index?wxOpenId=o2-0ss8ULPXHHnc0e5x9cICHfZ_0
+帐号：15811372713/111111
+
+投资列表：http://dev.broker.duomeidai.com/p/u/a/broker/invest/list?page=1&size=10
+邀请列表：http://dev.broker.duomeidai.com/p/u/a/broker/reserve/list?page=1&size=10
+       http://dev.broker.duomeidai.com/p/u/a/broker/reserve/list?page=1&size=10&status=1
+
+
+http://test.broker.duomeidai.com/login/index?wxOpenId=o2-0ss8ULPXHHnc0e5x9cICHfZ_0
+
+------v2---------
+duomeidai-web-2.87-javadoc
+
+------confluence安装---------
+ HTTP: 8090, Control: 8000
+ 
+ 登录：http://dev.broker.duomeidai.com/p/a/broker/login
+注销接口：/p/u/a/broker/logout
+ 
+ duomeidai-admin-2.15
+  is [907, 906, 905, 904, 903, 902, 901, 900, 896, 895]
+  om.dmtz.app.economic.controller.UserReserveController - get getUserReserveIdsByInvesterAndStatusAndReserveAtAndMobi
+  le  data is [894, 893]
+ data is [907, 906, 905, 904, 903, 902, 901, 900, 895, 894]
+ ile  data is [894, 893]
+ 
+ 邀请列表：p/u/a/broker/reserve/list
+ status:
+       2(成功)
+       1(预约)
+       3(失败)
+       9(全部)
+       4将之前最新预约信息更新为预约非推荐
+       
+       //预约状态(0.无预约待预约1.预约中待注册2.已注册3.已预约未注册)
+       
+ 18810893209/123456
+ 
+18890615 18810893209
+  http://localhost:8083/login/index?wxOpenId=oKMiujmHEdQzWVrFeeHGpOHdYs1s
+	
+  	
+bug#892,bug#878,bug#880,bug#881
+
+
+投标步骤
+1.查询返利金和现金劵 （判断是否使用现金卷和返利金）
+2.查询借款
+3.判断现金卷
+4.插入投资表
+5.修改用户表可用余额,返利金额,冻结金额
+	update t_user set 
+	usableSum = usableSum - "+ useUseAbleAmount + ", 
+	freezeSum = freezeSum + investAmount);
+	, rebateSum = rebateSum - " + useFanliAmount);
+	where id = " + userId);
+	and usableSum >= " + useUseAbleAmount
+	+ " and rebateSum >= " + useFanliAmount)
+6.更新借款进度比例
+ update t_borrow set amount_scale = hasInvestAmount  / borrowAmount  * 100  where  id = + borrowId
+7.添加资金流动记录
+
+
+command.append(" insert into t_fundrecord (userId, recordTime, operateType, fundMode, handleSum, usableSum, " +
+				"freezeSum, dueinSum, trader, dueoutSum, remarks, oninvest, paynumber, paybank, cost, income, " +
+				"spending, borrow_id, repayment_id, planId) ");
+		command.append("select "+ userId +", '"+StringEscapeUtils.escapeSql(recordTime)+"', "+operateType+", '" + StringEscapeUtils.escapeSql(fundMode)+"', "+ handleSum+", ");
+		command.append(" a.usableSum, a.freezeSum, ifnull(sum(b.recivedPrincipal + b.recievedInterest - b.hasPrincipal - b.hasInterest),0), ");
+		command.append(trader +", a.dueoutSum, '"+StringEscapeUtils.escapeSql(remarks)+"', 0, '" 
+				+ StringEscapeUtils.escapeSql(paynumber) +"', '" +StringEscapeUtils.escapeSql(payBank)+"', "+cost+", "+income +", ");
+		command.append(spending+", "+borrowId+", "+ repaymentId+", "+planId);
+		command.append(" from t_user a left join t_invest b on a.id = b.investor where a.id = "+userId+" group by a.id ");
+8.更新borrowStatus的状态为满标
+9.添加操作日志
+ t_opration_log
+10.如投资人使用返利，将投资使用的返利金额转入到投资人虚拟账户（从平台账户转账给投资人返利金额）
+   增加转账流水表：t_thirdPart_transRecord
+   交易失败可能为：平台账户余额不足了
+   如使用卡劵 从平台账户转账给用户卡劵的金额
+11.冻结投资人投标金额
+12.更新卡劵状态
+13.发送短信相关
+14.更新投资时刻客户的经纪人
+15.添加冻结记录
+   t_thirdPart_TrsBidRecord
+
+1.客户列表  转字 分页	
+2 查明有问题
+3 duomeidai-web tag 重发
+
+-----------------2015-6-16-------------
+  duomeidai-web-2.89
+  
+  
+
+ --4.29 less
+ 
+  less 
+
+app-economic-home-0.0.49
+
+---
+医保卡
+医保存折
+
+公积金卡
+
+
+
+app-economic-home-0.0.51
+
+app-economic-home-0.0.56
+
+----------20150619-------------
+duomeidai-service-2.10
+
+duomeidai-admin-2.17
+duomeidai-web-2.91
+
+duomeidai-service-2.11
+
+duomeidai-web-2.92
+
+
+uJ2uc7zakhUM2JdOgGZMcOOI0vi05rAea5ylMshPB5eCwHQek5vUoNn2P8HM4X3WmCke3ICXz30_7dfK5Tp4K53xVdbEXGlJxVYD2p04AOg
+
+
+官微
+275070023 
+wxOpenID=otDVas_i4hjMzmXo5JAfZU0jcYys, user_id=19012405
+
+136491554
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=-1}
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=19012405}
+
+
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=}
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=19012405}
+ M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=}
+otDVas8Pkvzm6Moy-5T2hD3sEnfs
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=19012405}
+M:{wxOpenID=otDVas8Pkvzm6Moy-5T2hD3sEnfs, user_id=19012405}
+
+----------官微-充值调研---------
+
+// 首信易直连支付接口
+public static String pay_easy_server_direct_url = "http://pay.yizhifubj.com/customer/gb/pay_bank.jsp";
+// 首信易非直连支付接口
+public static String pay_easy_server_indirect_url = "http://pay.yizhifubj.com/prs/user_payment.checkit";
+	
+
+rechargeAction.rechargeInit rechargeInit.action 充值页面
+wdzh-cztx-cz-index.jsp
+
+支付提交：payByPostForm.action PayEasyAction.payByPostForm
+
+#首信易支付订单页面返回地址
+pay_easy_callBack_url=http://dev.duomeidai.com/payEasyCallBack.action
+PayEasyAction.dealPayMentResult
+
+RechargeService.addUseraddmoney 充值
+支付订单表：t_recharge_detail
+
+验证支付成功或支付失败 validatepay.action PayEasyAction.validatepay
+
+
+1.提交支付
+
+返回商户：http://www.duomeidai.com/capitalIndex.action
+
+
+
+192.168.1.237
+
+
+localhost:8088/pl/u/recharge/bank/pay_sub?v_pmode=3&payMoney=1
+
+
+financeInvestResult.action
+
+#投资成功页面
+/data/duomeidai-web/run/WEB-INF/newPage/front/finance-invest-result.jsp
+finance-invest-result.jsp
+
+\\192.168.1.250\share\项目文件\开发项目\活动
+
+爱心爆表：http://dev.red.duomeidai.com/#/activity/loveindex/-1:-1
+
+投资结果 显示爱心
+Open Declaration String com.longdai.action.front.FrontMyFinanceAction.financeInvestResult()
+
+投资成功页面：
+/duomeidai-web/WebRoot/WEB-INF/newPage/front/finance-invest-result.jsp
+
+
+275070023 何超杰 oJyy2s-PaYYlY_XFvnyQC9m4qU9A
+
+1.ios android 升级问题
+2.投资后显示捐赠
+
+1.微信活动 
+
+2750700232  oJyy2s5CsIXy09mMc4GTDnkYrL4M
+
+
+【多美贷】
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+api.weixin.qq.com/cgi-bin/ticket/getticket
+
+index_sign.jsp
+access token过期还用
+OezXcEiiBSKSxW0eoylIeB3cs5xRx6MYKzMIOIy5xzw-F6nBRof8R6QuSBjoboPlqzDh0I6ncFh5lc1o3YMF5K0wbLeCecI563AW4D4BtnmGZ428JlF3uaExUbQgt2obETHYuq5LZKjRTQf8AZXo6A
+
+清楚cookie地址
+http://red.duomeidai.com/wx/clearcookie
+
+官网爱心活动页面
+activity-love-detail.jsp
+
+#首信易回调链接
+http://dev.red.duomeidai.com/pl/u/recharge/bank/pay_back?v_oid=20150708-7565-7544194259780&v_pmode=%D5%D0%C9%CC%D2%F8%D0%D0%D2%BB%CD%F8%CD%A8&v_pstatus=20&v_pstring=%D6%A7%B8%B6%CD%EA%B3%C9&v_md5info=5b9f69d51fdbec63064959a936bbd6ba&v_amount=0.01&v_moneytype=0&v_md5money=56c6ac899db4c7f5718d9e900559d3be&v_sign=b7014787c897f7fcf9af2095db83ef2e02b0572d1e83ea572b141789e5097e9486f08e92d9bcf32f355c7ac34ba91058713a88ffdb3f1681116a0588b95abe6069e7a1f3633180dfa1844003ed392201f737efbcc776ddda5a9619a0f0fef86b8366758764cd139b52206bceb33b9f963bcf9e2d8f2f67225d207e4317527538
+
+http://localhost:8088/pl/u/recharge/bank/pay_back?v_oid=20150708-7565-7544194259780&v_pmode=%D5%D0%C9%CC%D2%F8%D0%D0%D2%BB%CD%F8%CD%A8&v_pstatus=20&v_pstring=%D6%A7%B8%B6%CD%EA%B3%C9&v_md5info=5b9f69d51fdbec63064959a936bbd6ba&v_amount=0.01&v_moneytype=0&v_md5money=56c6ac899db4c7f5718d9e900559d3be&v_sign=b7014787c897f7fcf9af2095db83ef2e02b0572d1e83ea572b141789e5097e9486f08e92d9bcf32f355c7ac34ba91058713a88ffdb3f1681116a0588b95abe6069e7a1f3633180dfa1844003ed392201f737efbcc776ddda5a9619a0f0fef86b8366758764cd139b52206bceb33b9f963bcf9e2d8f2f67225d207e4317527538
+
+http://scallop.resource.center:8182
+
+http://scallop.resource.center:8182/resources/
+
+http://scallop.resource.center:8182/resources/tLinkSource-framework-user-service-rmi
+
+PRO_WEB	
+DUOMEIDAI-WEB	
+2.92
+2015-06-19 17:25:34	
+已发布
+成功
+
+2015-07-09 09:36:41,615:INFO(349)http-bio-8102-exec-7 com.longdai.service.SyncAccountService -
+ 同步账号返回内容：{"transCode":"SYN001001","reqTime":"2015-07-09 09:36:41","operationCode":"10001","user":"30000344",
+ "idType":"01","id":"132336196603240814","userName":"杨锁平","groupId":"7565","branchId":"duomei",
+ "returnCode":"0222","returnMsg":"己有身份信息"}
+ 
+身份证号：
+
+#周连国 110223198009308472
+
+#苗永亮 340621198507109312
+翁菊芳 511121196510115023
+蒋新国 321081195705117513
+甘金兰 422429195502265840
+肖慧桢 350722199605303926
+康波 513124199511024910
+张梦莹 420881199510255822
+王霞 500228198811141280
+刘英平 321102196505050013
+蔡家太 420922195902070111
+常远东 342422197911134635
+
+官网宣传页面
+http://dev.duomeidai.com/activityLove.action
+
+132336196603240814 杨锁平
+oJyy2s5CsIXy09mMc4GTDnkYrL4M 
+
+
+
+##############官网二维码搞成生产的
+
+德邦
+
+13/7 
+ <fmt:formatNumber type="number" value="${13-13%7)/7)}"/>
+ ${(kid.hasDonateAmount*100-kid.hasDonateAmount*100%kid.donateAmount)/kid.donateAmount}
+${13*100/7-13*100/7%1}
+  ${kid.hasDonateAmount*100/kid.donateAmount-kid.hasDonateAmount*100/kid.donateAmount%1}
+ 
+
+	---------------发测试文件 活动-------
+
+db[db_redEnvelope]_create_table.sql
+db[db_redEnvelope]_init_data.sql
+
+db[resource].sql
+
+http://nexus.duomeidai.com/content/repositories/releases/com/dmd/app-red-core/0.0.11/app-red-core-0.0.11-javadoc.jar
+http://nexus.duomeidai.com/content/repositories/releases/com/dmd/app-red-service/0.0.13/app-red-service-0.0.13-javadoc.jar
+http://nexus.duomeidai.com/content/repositories/releases/com/dmd/app-redenvelope-web/0.0.75/app-redenvelope-web-0.0.75-javadoc.jar
+
+
+微信名称：多美惠通多美贷测试号
+登录邮箱：2775491854@qq.com
+微信密码：duomeidaiCS
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于多美贷测试研发使用，需要后期认证。
+【多美贷】
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+【多美贷】
+微信名称：多美惠通多美贷开发号
+登录邮箱：1660512827@qq.com
+微信密码：duomeidaiKF
+功能介绍：多美贷是一个创新型P2B互联网金融服务平台。为了使多美贷用户获得更快更便捷的服务，该账号用于内部开发研究使用。
+
+你如果按照ssh  就去ssh的目录下 应该有个ssh2.exe 
+然后你执行
+ ssh2 -R 80:localhost:8080 -l root peon.cn 
+ 
+ UKehUviNBQlJ_TxJu1Acc6dTlcXOdt6vtSuw-XEiC83g-Bb7Yxvu6LMfqlsaMNyBAkGU2QkgHIHXg5hoAL5lmq0dzvAe13RoxI_Vqr95Zx0
+
+ 
+Python ETL kettle
+ 
+ http://nexus.duomeidai.com/content/repositories/releases/com/dmd/app-redenvelope-web/0.0.76/app-redenvelope-web-0.0.76-javadoc.jar
+
+ 138000
+ app-redenvelope-web-0.0.78
+ 
+ 
+ updateBorrowFistAuditStatus Procedures.p_borrow_audit
+ 
+ 借款审核初审 updateBorrowF.action borrowManageAction.updateBorrowF
+ 审核状态：2 审核通过
+        7 加入即将发布
+        6 审核不通过
+        
+ updateBorrowFistAuditStatus Procedures.p_borrow_audit 存过里有发送短信
+ 
+ 
+ 复审状态：
+     4 复审通过
+     6 复审不通过
+ 提交：updateBorrowPreFullScale.action 
+ // 满标审核前判断处理
+ Procedures.p_borrow_auth_fullscale    未发短信
+ 
+ 
+ 撤销：reBackBorrowTenderIn.action reBackBorrowTenderIn  注销发送短信
+ 
+ 
+ 还款中 放款确定：borrowManageAction.repayingBorrowWithdrwal.action
+ 
+ sendMsgToWithDrawalFail()  审核不通过 发送短信
+ 
+ 
+ addRoleInit.action
+ 
+ http://dev.admin.duomeidai.com/admin/adminLogin.action
+ 
+ duomeidai-service2.11.2 包括屏蔽给借款人发发短信
+ 
+ 转账：把 t_withdraw status改成2 
+   `status` int(11) DEFAULT '1' COMMENT '状态(1 默认审核中  2 已提现 3 取消 4转账中 5 失败)\r\n            ',
+   
+ -----放款 生成订单   status 1 提现审核中
+ -----转账审核       status 2 提现成功
+ 
+ 转账审核
+ fiManageAction.updateWithdrawTransfer.action
+    "updateWithdrawCheck
+   
+   http://www.findmaven.net/
+   
+从头编写HTML\CSS\Javascript是上个世纪的事情了，如今的JavaScript都是通过CoffeeScript这样的支持句法缩写的编辑器写成的。如果你希望写完JavaScript能够一个工具完成代码清理优化工作，Gulp 就是你的不二之选，
+GulpJS类似Ant或Maven之于Java。
+
+ajaxCheckRegisterPhone.action 注册验证手机号存在
+ajaxRegisterByPhone2.action 注册
+ajaxLogin.action 用户登录
+financeInvest.action 投标
+updatePassword.action 修改用户密码
+updateDealPwd.action 修改交易密码
+updateDealPwdByPhone.action 找回交易密码
+checkImgCodeWithSendMsg.action  获取图形验证码
+ajaxCheckRegisterPhone.action
+ 为了解决短信退订问题而新加的方法，用户主动发起的短信要让用户收到
+com.gozap.services.SmsService.sendSms2(Connection conn, String content, String phone, Long userId, String type) throws Exception
+
+
+21312312
+
+----------------
+官微-注册
+PlWxUserController app/pl/reg
+pl/u/product/invest 投资
+
+app-redenvelope-web-0.0.82-javadoc.jar
+
+
+WEB-INF/newPage/front/finance-index.jsp
+
+
+     #app-red-service-0.0.14   
+     # app-redenvelope-web-0.0.83
+       
+ 加班日期--------------------------------
+   2015.6月27号
+   2015.7月4号
+   2015.7月25 14：30  7.25 19 
+   加班剩余16个小时
+备注：需要重新打包发版本 。。。。。       
+       
+       
+ .CCPRestSDK - Sat Jul 25 17:06:19 CST 2015 voiceVerify response body = 
+ {"statusMsg":"【呼叫】应用未上线，语音验证码被叫号码外呼受限","statusCode":"111324"}      
+ 
+ 
+bug#未登录 捐赠后个人中心无法返回
+
+app-redenvelope-web	0.0.84
+ 
+ // http://dev.red.duomeidai.com/wx
+ 
+ 
+ ----------20150728-----------------
+ app-red-core-0.0.13-javadoc
+ app-red-service-0.0.15
+ app-redenvelope-web-0.0.85
+ ------------svn恢复未提交的文件--------
+ svn revert -R .
+ 
+ 
+ ------20150731-活动第三版整理----------
+ 活动第三版逻辑调整（不包括界面文案调整）
+ 1.官网投资成功 增加"爱心捐赠活动" 链接
+ 2.官微-活动页 增加  爱心收集人数 （需改接口）
+ 3.官微-活动页 显示 爱心积分为积分总值，XX为微信昵称
+ 4.官微-小孩图片替换
+ 5.官微-捐赠后 活动页显示 爱心基金（捐赠的小孩显示，别的小孩不显示）
+ 6.官微-立即捐赠（分值不够)-去分享-显示分享蒙板
+ 7.官微-立即捐赠or开始收集爱心（该孩子已捐赠达到1000元-可分享） 显示捐赠完毕（可切换其他孩子）
+ 8.官微-用户捐赠成功后点击【再来一次】或者选择其他孩子点击【开始收集爱心】弹出    显示已捐赠 爱心接力 
+ 9.官微-分享界面 增加  爱心收集人数 （需改接口）
+ 10.官微-投资成功增加 链接到 微信活动说明页
+ 11.app 投资成功 增加 链接到 官网 活动宣传页
+ 
+ 医保卡
+ 
+ 交通银行 公积金卡
+ 
+ t_debt 
+ t_invest_debt
+
+alter table t_invest_repayment add column investDebtId bigint(20) default null;
+alter table t_borrow add column debtTransferable tinyint(4) not null default 1 comment '是否支持债权转让';
+ALTER TABLE `duomeidai`.`t_debt` CHANGE COLUMN `discount` `discount` DECIMAL(10,4) NOT NULL COMMENT '折扣' ;
+ALTER TABLE `duomeidai`.`t_invest_debt` ADD COLUMN `amountTransferSerlNum` VARCHAR(40) NOT NULL COMMENT '债权金额转账序列号'  AFTER `investTime` , ADD COLUMN `feeTransferSerlNum` VARCHAR(40) NOT NULL COMMENT '手续费转账序列号'  AFTER `amountTransferSerlNum` ;
+ 共享服务器账户
+ \\share\share
+ js_admin
+ mazong1!  
+ 
+ vpn:114.66.196.197 hechaojie/123456
+ 
+ http://dev.admin.duomeidai.com/admin/forPaymentDueInList.action?ldDate1438663219035
+ 还款提交： admin/adminSubmitPay.action
+ 待还款列表：admin/forPaymentDueInList.action  视图：v_t_deuin_list
+
+
+同步账户初始化：admin/syncAccountByUserIdInit
+同步账户查询：admin/syncAccountByUserId.action
+ -----------2015-8-8-----------------
+#10004虚拟账号管理费账号(现金卷和返利金使用账户) 
+ThirdPartyConfig.PAY_EASY_V_REVENUE
+PAY_EASY_V_REVENUE=10004
+-----------------------------------
+
+1.活动说明页无法 滚动
+2.分享页面无法 上翻页 
+3.分享页面帮xxx收集爱心 无反应
+
+app-redenvelope-web-0.0.87
+
+publishTime 
+
+duomeidai-service-2.60
+
+duomeidai-admin-2.3.10
+
+duomeidai-web-3.4.40
+ 
+https://dev.duomeidai.com/userCoupon.action?ldDate1439202588264
+https://dev.duomeidai.com/userCoupon.action?ldDate1439202606205
+
+https://dev.duomeidai.com/userCouponInit.action?couponStatus=unuseCoupon
+
+
+----------------2015-8-11-------------------
+1.爱心活动
+2.排序规则
+duomeidai-web分支：svn://svn.duomeidai.com/dmd/branches/duomeidai-web/duomeidai-web-3.4.35 
+duomeidai-admin : tag: svn://svn.duomeidai.com/dmd/tags/duomeidai-admin/duomeidai-admin-2.3.10
+
+---------------------------------------------
+
+东方时尚学号：19033395
+
+------刷新缓存--------
+flush com.dmtz.dmd.red.model.GameScoreSetting
+
+------ 20150812------
+官微-打tag发测试
+
+已打tag app-redenvelope-web-0.0.88
+
+--刷新缓存
+
+telnet 127.0.0.1 11211
+flush_all
+
+
+telnet cache.dmd.red 11211
+flush_all
+
+
+# 项目列表 
+
+duomeidai-web-3.4.45
+
+今天发布内容：
+1.各端平台项目排序规则
+2.官微-充值
+3.现金卷使用规则
+4.债权转让
+
+
+delete com.dmtz.dmd.red.model.Kid
+
+UPDATE kid SET img_url = REPLACE(img_url, 'www.', '') ;
+
+校验身份证号码
+https://dev.duomeidai.com/verifyCodeAndIdNo.action
+
+/addBankInfo.action 添加银行卡信息
+Open Declaration String com.longdai.action.front.RechargeAction.addBankInfo() throws Exception
+增加提现银行卡
+
+
+一、投资PK模块
+   1.投资大PK页面
+     a.top1
+     b.top2~4
+     c.top5~10
+     d:top11~50
+   2.top50投资排行榜接口（9月10日—10月9日）
+
+二、留言模块
+   1.留言板页面
+     a.留言板
+     b.推荐的留言列表 
+                  显示字段：（留言时间倒序）
+     c.中奖名单列表
+               （最多40条中奖纪录）  显示字段：用户昵称全部展示+中奖日期（留言时间倒序）
+   2.所有留言页面
+     a.审核通过的留言列表
+               （每页10条）  显示字段：用户昵称，留言内容，留言时间 （留言时间倒序）
+   3.周年庆留言审核页面（后台）
+   	 a.查询留言列表接口
+   	 b.审核通过&多选审核通过接口
+   	 c.审核不通过接口
+   	 d.推荐展示接口
+   	 e.派奖接口
+   	 f.撤销接口
+   	 
+    留言表：id,用户id,content留言内容，留言时间，status状态
+      
+2.分享：
+2.1QQ空间http://connect.qq.com/intro/sharetoqq/ 
+2.2新浪微博http://open.weibo.com/sharebutton
+2.0一键分享 http://www.bshare.cn/help/install
+
+/data/duomeidai-web/deploy/statistic.sh
+
+
+上午方案评审结果修改如下，大家看看有没有需求调整的：
+平台接口如下：
+   1.top50排行榜（用脚本，5分钟跑一次）
+   2.提交留言接口
+   3.推荐的留言列表
+   4.中奖名单列表
+   5.审核通过的留言列表
+ 后台接口如下：
+   1.查询留言列表接口
+   2.留言操作接口（操作码）：
+      1000：审核通过&多选审核通过
+      1001：审核不通过
+ 	  1002：推荐展示
+	  1003：派奖
+      1004：撤销
+db 留言表： 增加字段 推荐时间，中奖时间                           
+
+--------2015-8-21------              
+何超杰：
+昨日：
+       1.方案评审
+       2.拆任务    
+       3.task# 1071 db创建   已完成
+今日：              
+       1.task#1077 平台-提交留言接口       
+       2.task#1079 平台-推荐的留言列表      
+              
+              
+      WEB-INF/newPage/front/finance-invest-result.jsp        
+                            
+/data/duomeidai-web/run/WEB-INF/newPage/front/finance-invest-result.jsp
+
+将test: /data/duomeidai-web/run/WEB-INF/newPage/front/finance-invest-result.jsp  替换pro-web目录：/data/duomeidai-web/run/WEB-INF/newPage/front/finance-invest-result.jsp
+-- linux 定时任务
+crontab -e
+*/5 * * * * /home/app/test.sh
+
+
+何超杰：
+昨日：
+   1.task#1073平台-top50排行榜脚本 已完成
+   2.task#1077平台-提交留言接口  已完成
+   3.task#1079平台-推荐的留言列表 已完成
+今日：
+   1.task#1081平台-中奖名单列表
+   2.套页面
+   
+   
+    UI 25号   
+         文平 27号
+    超杰套页面：28号
+  非游戏：28号完成
+  31号demo 
+  
+何超杰：
+昨日：
+   1.task#1081平台-中奖名单列表  已完成
+   2.task#1075平台-top50排行榜套页面 60%
+今日：
+   1.task#1075平台-top50排行榜套页面
+   
+ top50 
+ crontab -l
+ crontab -e
+ */5 * * * * /usr/local/bin/activity_invest_top50.sh  
+   
+   /data/duomeidai-web/run/WEB-INF/newPage/front/activity-message-detail-top50.jspf
+   
+   /#/user/index   
+   
+ ---------周年庆活动注册- source-----------
+ http://www.duomeidai.com/activity.action
+   
+1.用户第一次进入官微，cookie没有openid，会重定向到微信认证接口。最后重定向到首页。此过程会丢失（http://dev.red.duomeidai.com/#/user/index）#号后面的地址。
+2.重定向后前端获取不到#后的地址，默认会跳到项目列表页面。
+
+-----周年庆活动注册统计---------
+source名字叫 ： activity_birthday
+有效期：5小时   
+   
+   
+JobEveryHalfAnHourTask 担保金账户定时任务
+   
+-----访问日志---t_access_log----------   
+1.项目列表页：longdai.action.front.FrontMyFinanceAction.financeList() throws 
+2.拦截器
+
+ 同步担保机构账户：http://dev.admin.duomeidai.com/admin/syncAcc.action
+ 
+ 1.统计pv uv 
+ 
+ 添加借款：borrowApplyInit
+ 
+ 查询担保公司列表
+List<Map<String, Object>> com.longdai.dao.BorrowDao.queryBondingCompany(Connection conn, Integer status) throws SQLException, DataException
+
+
+/etc/my.cnf
+ 
+周年庆活动时间：9月8日到10月8日
+
+begin_date=2015-9-8
+end_date=2015-10-9
+
+ 
+三方资金：http://dev.admin.duomeidai.com/admin/queryUserFundInThirdPartInfo.action?userId=18890388 
+资金纠正：http://dev.admin.duomeidai.com/admin/adjustUserMoney.action?ldDate1441609835146
+
+
+1.项目模块 maven
+2.svn git
+3.spring json 定时任务
+4.java 反射  aop面向切面编程
+5.多个合作svn如何解决冲突
+6.数据库范式 表的拆分原则（垂直拆分，水平拆分）
+7.表数据量大时，如何解决。
+8.缓存了解多少，memcached，redis,静态页处理
+9.shell脚本常用命令
+  打包，解压，创建账户，创建目录，给目录授权 774 ，linux定时任务
+10.
+
+
+微信分享
+/img/icon/wx_share_logo.png
+WEB-INF/newPage/front/activity-message-detail.jsp
+
+http://www.duomeidai.com/ajaxLogin.action
+
+
+1.入职
+2.看办公环境
+3.试用期3个月事
+4.那边的技术团队
+5.收购公司的事
+
+
+20号提交测试
+
+盒子众筹12月14号上线
+
+
+1、头像没变
+2、映射到内网
+3、后端实名审核 无照片
+4、提示语 审核成功文案
+5、项目回报 星号去掉
+6、项目进展错误提示语
+7、消息中心
+8、支付完成 弹框更改
+9.上线的项目才可以支付
+10.项目支持 支持时间 精确到时分秒
+11.项目详情二维码弹框
+12.首页搜索功能
+13.找回密码调整到登录页面
+14.后台项目操作记录日志
+15.项目详情多少人进行了众筹 无显示人数
+
+周3发版本
+
+
+工作总结：
+1.自9月份加入盒子众筹项目陆陆续续做了一些功能。
+做盒子的功能没有像做多美的功能流程完善。
+例如多美做一个功能前先有需求评审，方案设计，方案评审，任务拆分。
+以及自测，提测，而盒子由于开发时间紧张，流程并没有那样完善。
+加上项目前期需求变更频繁，加上自己做完功能之后，
+并没有进行严格的自测，导致演示时功能不流畅。
+感谢马总的信任，把盒子的项目交给我负责。我也了解自己的性格，
+没有管理经验，也不善言辞，导致现在的盒子团队管理的一塌糊涂。
+有了这一个月的团队经验，深知带团队并不是那嘛容易。我经常把
+精力放到了敲代码上面，并没有太多时间关注队员工作情况。这也是我
+带团队失败的主要原因。如果有可能，我后续会把更多的时间放到
+团队管理和系统设计上面，忘掉自己只是一个coding的角色。
+
+
+
+感受：
+1、
+
+
+
+
+
+
+userid ： 18890407
+ 
+活动管理：
+
+
+TblBusinessPartner
+
+
+多美贷2016生产问题
+
+
+生产环境 建立目录：/data/fastdfs/public/images/group1/
+新建域名：http://imgs.duomeidai.com/ 指向 /data/fastdfs/public
+
+
+您好
+ 
+ 
+附件为将三项鉴权更新为四项鉴权的接口文档，及新增的四项鉴权支持银行，请查收。
+四项鉴权验证姓名、身份证、卡号，并增加了手机号验证。需贵司尽快使用，以提高对风险的防控。如需配合请及时联系。
+联系人：王雨琨，电话：13718953574。
+ 
+页面：/duomeidai-web/WebRoot/WEB-INF/newPage/front/home-index.jsp   663行
+
+添加银行卡校验  action: verifyCodeAndIdNo.action
+
+添加银行卡弹框：selectBankCard.js action: RechargeAction  addBankInfo.action
+
+用户绑卡记录表 t_bankcard 
+
+第三方同步账户记录：t_thirdPart_syncAccountRecord
+
+// 账户同步银行卡号操作码
+	public static String PAY_EASY_SYNC_BANK_ACCOUNT_OPERATIONCODE = "10004";
+
+#同步账号url
+payEasySyncAccoutUrl=http://pay.duomeidai.com/duomei_test/synclient
+
+	// 账户同步
+	public static String PAY_EASY_SYNC_ACCOUNT_TRANSCODE = "SYN001001";
+
+// 账户同步银行卡号操作码
+	public static String PAY_EASY_SYNC_BANK_ACCOUNT_OPERATIONCODE = "10004";
+
+============银行卡表预留手机号=======================
+ALTER TABLE t_bankcard ADD mobile varchar(50) DEFAULT NULL COMMENT '预留手机号' ;
+
+2147483647
+
+因本人个人原因，特提出离职申请，望领导批准
+
+
+
+7548.bidnotice.url=http://www.duomeidai.com/payEasyBidSucNotify.action
+7548.repaynotice.url=
+7548.valcardnotice.url=http://www.duomeidai.com/payEasySyncAccountNotify.action
+
+
+7548.cutpayagentnotice.url=http://www.duomeidai.com/payEasyTrsCutPaymentAgentNotify.action
+
+
+7548.cash.top2p=http://www.duomeidai.com/payEasyWithDrawalNotify.action
+这是你们现在线上的回调地址
+你看下
+
+
+#提现成功后异步回调url
+pay_easy_withdrawal_transCashFee_callBackNotifty=http://test.duomeidai.com/payEasyWithDrawalNotify.action
+
+支付相关配置：/duomeidai-web/src/main/resources/struts/front/payEasy.xml
+
+
+
+http://61.149.47.154:18080/payEasyBidSucNotify.action
+
+
+
+标的成功后回调通知：
+7548.bidnotice.url=http://61.149.47.154:18080/payEasyBidSucNotify.action
+
+身份证号异步回调地址：
+7548.valcardnotice.url=http://61.149.47.154:18080/payEasySyncAccountNotify.action
+
+代扣成功后回调通知：
+7548.cutpayagentnotice.url=http://61.149.47.154:18080/payEasyTrsCutPaymentAgentNotify.action
+
+提现后台通知接口：
+7548.cash.top2p=http://61.149.47.154:18080/payEasyWithDrawalNotify.action
+
+

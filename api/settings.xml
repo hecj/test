@@ -1,0 +1,74 @@
+<settings>
+  <servers>
+
+	<server>  
+		<id>releases</id>  
+		<username>admin</username>  
+		<password>admin123</password>  
+	</server>  
+	<server>  
+	  <id>snapshots</id>  
+	  <username>admin</username>  
+	  <password>admin123</password>  
+	  </server>  
+
+  </servers>
+
+  <mirrors>
+		<mirror>
+			<id>central</id>
+			<mirrorOf>central,nexus</mirrorOf>
+			<name>Human Readable Name for this Mirror.</name>
+			<url>http://121.40.56.87:8081/nexus/content/groups/public/</url>
+		</mirror>
+ </mirrors>
+<!--
+<profile>
+			<id>dev</id>
+			<repositories>
+
+				<repository>
+					<id>nexus</id>
+					<url>http://121.40.56.87:8081/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
+				<repository>
+					<id>thirdparty</id>
+					<name>thirdparty</name>
+					<url>http://121.40.56.87:8081/nexus/content/repositories/thirdparty/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>nexus</id>
+					<url>http://121.40.56.87:8081/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+	</activeProfiles>
+-->
+</settings>

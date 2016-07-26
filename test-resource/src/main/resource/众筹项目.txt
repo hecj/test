@@ -1,0 +1,545 @@
+mvn release:rollback
+
+wiki	wiki.boxamazing.com
+nexus	nexus.boxamazing.com
+	admin / dxdiag
+svn  hechaojie/hechaojie
+----------------------------------------------------------------------
+svn://svn.boxamazing.com
+zentao地址 禅道
+
+xiayu
+admin
+dxdiag
+
+dev============
+http://dev.boxamazing.com
+http://dev.admin.boxamazing.com  admin/123456
+
+test============
+http://test.boxamazing.com/  
+http://test.admin.boxamazing.com/
+
+----------------------------------------------------------------------
+zentao.boxamazing.com
+
+jdbcUrl = jdbc:mysql://114.66.196.203:3306/box?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+192.168.1.242
+user = root
+password = dxdiag
+devMode = true
+rooturi = http://localhost:8080
+
+-----------------------------
+
+内部wiki
+wiki.boxamazing.com
+
+
+任务管理zentao
+zentao.boxamazing.com
+
+
+test
+----------------------------------------------------------------------
+114.66.196.204
+192.168.1.243
+System	root	iO9f7Yp!S
+Mysql	root	dxdiag  (localhost)
+Mysql	root	dxdiag1111  (%)
+Mysql	box_test box_test  (%)
+Mysql	reader reader  (%)
+
+host    test.boxamazing.com
+ssh测试环境只读账号，readonly，密码readonly
+
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+GRANT privileges ON databasename.tablename TO 'username'@'host'
+例子: GRANT SELECT, INSERT ON test.user TO 'pig'@'%';
+      GRANT ALL ON *.* TO 'pig'@'%';
+flush privileges;
+
+dev
+----------------------------------------------------------------------
+114.66.196.203
+192.168.1.242
+System	root	K8s9U1kL#
+Mysql	root	dxdiag 
+
+测试环境
+
+ssh密码：Dxdiag0730
+
+vpn
+----------------------------------------------------------------------
+114.66.196.197
+PPTP
+Encryption:None
+
+
+exmail.qq.com
+名字全拼@boxamazing.com
+
+========================================
+支付宝账号 boxamazing@boxamazing.com
+密码 dxdiag0821
+支付密码 Dxdiag0821
+
+-- 挂静态文件申请支付宝产品
+
+1.还没有进行实名认证
+-----------------------------
+ * #产品状态表#
+ * ================================
+ * 状态			含义
+ * --------------------------------
+ * 0			初审草稿
+ * 1			初审提交
+ * 2			初审未通过
+ * 3			初审核通过/复审草稿
+ * --------------------------------
+ * 4			提交复审
+ * 5			复审打回
+ * 6			复审通过
+ * --------------------------------
+ * 7			产品预热
+ * 8			产品众筹中
+ * 9			产品众筹结束失败
+ * 10			产品众筹结束成功
+ * ================================
+
+余额明细:记录虚拟账户中余额变动记录（交易成功的）
+提现记录：记录提现记录（不管提现成功或者失败）
+
+支付宝API：https://b.alipay.com/order/techService.htm
+
+
+批量打款：
+1、默认情况下，单笔打款金额小于50万。
+2、默认情况下，每个批次金额小于1000万。
+3、多笔批次提交时，每笔批次提交的间隔时间建议在5分钟～10分钟左右。
+
+批量打款查询接口：提交批次中如果出现异常情况，请使用批量付款到支付宝账户状态查询接口(btn_status_query)进行查询，确认付款批次是否提交成功。
+
+
+
+=======众筹支付模块=========
+1.用户充值（支付宝充值）
+2.支持项目付款（支付宝付款）
+3.用户提现（支付宝批量提现）
+
+一、用户充值思路：
+整个业务操作流程
+		支付
+		返回 return_url
+		通知
+		业务后续的执行
+		
+详细流程如下：
+(1) 构造请求数据
+	商户根据支付宝提供的接口规则，通过程序生成得到签名结果及要传输给支付宝的数据集合。
+(2)	发送请求数据
+	把构造完成的数据集合，通过页面链接跳转或表单提交的方式传递给支付宝。
+(3)	支付宝对请求数据进行处理
+	支付宝得到这些集合后，会先进行安全校验等验证，一系列验证通过后便会处理这次发送过来的数据请求。
+(4)	返回处理的结果数据
+	对于处理完成的交易，支付宝会以两种方式把数据反馈给商户网站。
+	a.程序上自动进行重新构造URL地址链接，在用户当前页面上通过自动跳转的方式跳回商户在请求时设定好的页面路径地址（参数return_url，
+	     如果商户没有设定，则不会进行该操作）；
+	b.支付宝服务器主动发起通知，调用商户在请求时设定好的页面路径（参数notify_url，如果商户没有设定，则不会进行该操作）。
+(5) 对获取的返回结果数据进行处理
+	商户在同步通知处理页面（参数return_url指定页面文件）或服务器异步通知页面（参数notify_url指定页面文件）获取支付宝返回的结果数据后，
+	可以结合自身网站的业务逻辑进行数据处理（如：订单更新、自动充值到会员账号中等）。
+
+二、支持项目付款（原理同用户充值）
+
+三、用户提现
+
+
+https://open.weixin.qq.com/connect/qrconnect?appid=wx4530e35e8a9fc5cd&redirect_uri=http://www.mogujie.com/oauth/callback/weixin/mogujie?referer_key=5E6BA887B6F2988918AD730D730D8D69&response_type=code&scope=snsapi_login 
+--微信扫码授权登录
+http://www.cnblogs.com/txw1958/p/4142378.html
+https://open.weixin.qq.com/
+
+
+db规范。
+
+表字段一要有如下字段
+id  bigint
+create_at  bigint
+update_at  bigint
+
+===================table============================
+充值订单表【recharge_detail_pre】
+id  bigint
+user_id 用户id
+order_num 订单号(规则生成)
+amount 充值金额
+counter_fee 手续费
+status 充值状态（1：未付款，2：充值成功，3：充值失败）
+desc 充值描述
+create_at  bigint
+======================================================
+
+
+充值订单临时表：存正在充值的订单
+======================table========================
+充值成功记录表【recharge_detail_record】：
+id
+order_id 订单号
+trade_no 支付宝交易号
+subject 商品名称
+payment_type 支付类型
+exterface 接口名称
+trade_status 交易状态
+notify_time 通知时间
+buyer_email 买家支付宝账号
+buyer_id 买家支付宝账户号
+total_fee 交易金额
+create_at 创建时间
+=======================================================
+
+
+===============table=========================
+资金流水表（fundrecord）
+id
+user_id 用户id
+before_amount 交易前金额
+handle_amount 操作金额
+after_amount 交易后金额
+freeze_amount 冻结金额
+cost 手续费
+trader 交易者
+operate_type 操作类型（1:充值,2:提现,3:转账）
+order_num 订单号
+pay_num 支付流水号
+remark 交易备注（充值，提现，转账）
+
+create_at 创建时间
+=============================================
+
+================table========================
+提现表（withdrawals）
+id 
+user_id 用户id
+amount 提现金额
+cost 手续费
+status 状态（1：提现中，2：提现成功，3：提现失败）
+type 提现类型（1：支付宝）
+buyer_email 买家支付宝账号
+buyer_id 买家支付宝账户号
+desc 描述
+create_at 
+=============================================
+
+
+
+==============================================
+充值通讯记录表
+
+
+
+
+支持项目订单表（支付方式）
+支持项目通讯记录表
+
+提现表
+提现临时表
+
+提现通讯记录表
+提现通讯记录表_临时表
+
+平台资金流动信息表：（流水类型）（充值，提现，余额购买项目）
+第三方资金流水表（通讯表）
+
+db设计：2天
+
+开发10天
+
+联调：5天
+
+
+
+投资项目：
+2天：
+
+ PowerDesigner使用教程 
+
+
+
+A:
+project
+comment
+
+
+B:
+paypwd
+verify_code
+user
+
+c:
+notice_history
+comment_support
+
+
+<#setting datetime_format="yyyy-MM-dd HH:mm"/>
+如果字段是字符串格式，就要先转换为number，支持链式调用
+${profile.createTime?number?number_to_datetime("yyyyMMdd HH:mm:ss")}
+
+
+
+======
+第一次下载更新
+
+imacros =定时刷新工具
+
+hechaojie@bjdmtz.com
+腾讯管家
+http://guanjia.qq.com/online_server/webindex.html
+腾讯手机管家
+
+你好，这是多美贷网站上线1周年庆活动，页面内容真实，有效，并无欺诈内容，请腾讯工作人员尽快审核。谢谢
+
+你好，页面在微信端打开提示"已停止访问该页面"，这是多美贷网站上线1周年庆活动，页面内容真实，有效，
+并无虚假内容。请腾讯工作人员尽快审核。谢谢
+
+
+开会
+
+20151015=================
+复审富文本调研：
+1、富文本插入模版可以实现              （难易程度：*）
+2、删除实现不了
+详情页评论插入表情调研：
+2、评论显示表情 参见csdn  http://bbs.csdn.net/topics/391842543 做法     （难易程度：*** 费时间）
+     不用富文本 
+众筹金额：
+1、只允许输入整数  不然自动加入.00实现不了
+
+
+订单状态（
+0:未付款，
+1：已付款，
+2:交易关闭，用户取消交易
+3：交易失效， 项目失败，项目下线, 超过30分钟付款失效
+4：已发货，
+5：已收货,
+6:等待退款，交易失败（根据付款状态判断：已付款状态为：等待退款，未付款变为：交易关闭）
+7：已退款）',
+
+
+
+===========支付宝==============
+支付宝同步回调通知
+http://localhost/alipay/orderPayBack?body=%E6%99%BA%E8%83%BD%E6%B0%B4%E6%9D%AF%E7%BA%AA%E5%BF%B5%E7%89%88&buyer_email=275070023%40qq.com&buyer_id=2088702643188766&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InVaITYWNhg3wZeq3TxJloHU3aOj6XOxWeJjfMBs2Prn5Zcex5n&notify_time=2015-10-29+16%3A24%3A45&notify_type=trade_status_sync&out_trade_no=2015102916225234487529P18&payment_type=1&seller_email=boxamazing%40boxamazing.com&seller_id=2088021553870711&subject=%E6%99%BA%E8%83%BD%E6%B0%B4%E6%9D%AF&total_fee=0.01&trade_no=2015102921001004760035589023&trade_status=TRADE_SUCCESS&sign=8d19785b897f7d7b4957166e27a68294&sign_type=MD5
+
+http://localhost/alipay/pay_return_url?body=%E6%99%BA%E8%83%BD%E6%B0%B4%E6%9D%AF%E7%BA%AA%E5%BF%B5%E7%89%88&buyer_email=275070023%40qq.com&buyer_id=2088702643188766&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InVaITZzGbDdDStYP5m04zja2ehEbqdAy6QViV1B3EyTsa4E4Xh&notify_time=2015-10-29+17%3A30%3A02&notify_type=trade_status_sync&out_trade_no=2015102917281295415595P18&payment_type=1&seller_email=boxamazing%40boxamazing.com&seller_id=2088021553870711&subject=%E6%99%BA%E8%83%BD%E6%B0%B4%E6%9D%AF&total_fee=0.01&trade_no=2015102921001004760036967440&trade_status=TRADE_SUCCESS&sign=b167a84926f6e100bfadcf160dd09770&sign_type=MD5
+
+
+#支付宝异步同步参数
+Method      : pay_notify_url
+Interceptor : com.boxamazing.webfront.interceptor.LogInterceptor.(LogInterceptor.java:1)
+              com.boxamazing.webfront.interceptor.SessionInterceptor.(SessionInterceptor.java:1)
+              com.jfinal.ext.interceptor.POST.(POST.java:1)
+Parameter   : discount=0.00  payment_type=1  subject=智能水杯  trade_no=2015103021001004760056006633  buyer_email=275070023@qq.com  gmt_create=2015-10-30 16:17:54  notify_type=trade_status_sync  quantity=1  out_trade_no=2015103016144262088935P18  seller_id=2088021553870711  notify_time=2015-10-30 16:22:38  body=智能水杯纪念版  trade_status=TRADE_SUCCESS  is_total_fee_adjust=N  total_fee=0.01  gmt_payment=2015-10-30 16:18:00  seller_email=boxamazing@boxamazing.com  price=0.01  buyer_id=2088702643188766  notify_id=4d91d913575cbc96effa1c1e89a2151lv4  use_coupon=N  sign_type=MD5  sign=6473f2f63000f6a5965171aaa32f7f84
+
+
+#支付宝同步通知参数
+Method      : pay_return_url
+Interceptor : com.boxamazing.webfront.interceptor.LogInterceptor.(LogInterceptor.java:1)
+              com.boxamazing.webfront.interceptor.SessionInterceptor.(SessionInterceptor.java:1)
+              com.jfinal.ext.interceptor.GET.(GET.java:1)
+Parameter   : body=智能水杯纪念版  buyer_email=275070023@qq.com  buyer_id=2088702643188766  exterface=create_direct_pay_by_user  is_success=T  notify_id=RqPnCoPT3K9%2Fvwbh3InVaITRZIwNkt7ccsyZnT0HckRW0k92Vsfzp4d8PinCm3FhEd%2BV  notify_time=2015-10-30 16:18:02  notify_type=trade_status_sync  out_trade_no=2015103016144262088935P18  payment_type=1  seller_email=boxamazing@boxamazing.com  seller_id=2088021553870711  subject=智能水杯  total_fee=0.01  trade_no=2015103021001004760056006633  trade_status=TRADE_SUCCESS  sign=bfda25e431064b28f68de2151edfbf13  sign_type=MD5  
+
+freemarker局部变量赋值：<#assign username=p.projectRecomm>${username.position!}
+
+
+项目支持更新如下：
+1.提交订单减少库存
+2.订单失效增加库存
+3.每个产品一个人只可以支持一次
+
+
+==============
+20151110会议
+1.登录比较卡
+2.修改个人资料无法保存
+3.微信第三方登录头像问题
+4.测试环境让夏宇发布
+5.项目介绍报错 去别处转转
+6.后端众筹金额上线忽略
+7.微博分享图是空的
+8.关注人数  字体颜色不好看
+9.支持时间限制取消 评论条数不限制
+10.虚拟的提交订单无法提交订单
+11.保存地址和修改地址  需要有单独的保存和修改按钮
+12.后台众筹天数修改
+13.复审众筹天数没填可以提交
+14.昵称控制6-16个字符
+15.项目详情产品众筹参与人数 为0 显示文案问题
+16.用户管理 查看个人资料
+17.项目管理加入项目名称模糊搜索
+
+18.订单号25位
+
+5.项目介绍报错 去别处转转
+可参考点名时间：http://www.demohour.com/projects/362010
+
+
+
+================
+未做的模块
+
+
+安全中心..
+系统消息
+我的支持
+项目管理-暂无
+
+
+20151119 会议纪要
+1.登录二维码格式大小问题
+2.点用户名跳到个人中心 
+3.提交订单未实名认证跳到完善信息页面   ===已处理
+4.初审同意协议发布项目弹框     
+5.协议页面电话
+6.初审/复审提交成功  返回我的发起页面  ===已处理
+7.初审通过 提示补充资料  
+8.提交订单地址修改成弹框
+9. 后台添加回报  金额 添加 单位元     ===已处理
+10.发布人不可以购买自己发布的弹框（统一弹框：您不能支持自己的项目）
+11.没有支持，点发布评论 统一弹框 
+12.已赞再点击无反应处理
+13.所有的弹框都用统一弹框
+14.项目详情，首页评论成功弹出 “评论成功”统一弹框
+15.项目支持成功页面  点击“我的订单”-到“我的支持”页面  ===已处理
+16.项目管理操作 添加  “支持列表” 链接到支持列表    ===已处理
+17.支持项目"增加项目名称” 筛选    ===已处理
+18.发货单列表
+19.前台删除的统一弹框
+20.私信发送成功 统一弹框
+21.点击消息数量跳到 消息中心
+22.安全中心 登录密码和邮箱有问题
+23.新增收货地址 点提交 手机号判断显示手机号格式不正确
+
+
+
+=====================================================
+1.加入定时任务 判断项目状态
+2.项目支持加入添加批量退款--数据到批量退款管理里面
+
+
+
+
+
+
+
+
+
+=======任务计划===============
+用户反馈--11.24号完成    25号demo
+我的私信改版  前端页面  11.25号中午 完成      
+                       后端逻辑+套页面   26号下午demo
+充值                前端页面  11.25号  11.30号（下周1）demo 
+
+
+
+
+
+
+支付宝异步通知回调 pay_notify_url
+2015-11-24 13:00:40,591:INFO(52)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 通知校验ID：ab5ca044c6bbaee1e5ec50f5dc3b997hjk
+2015-11-24 13:00:40,592:INFO(54)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 通知时间：2015-11-24 13:04:17
+2015-11-24 13:00:40,592:INFO(56)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 通知类型：batch_refund_notify
+2015-11-24 13:00:40,593:INFO(58)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 签名方式：MD5
+2015-11-24 13:00:40,594:INFO(61)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 批次号：2015112413002380814219
+2015-11-24 13:00:40,595:INFO(64)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 成功数量：0
+2015-11-24 13:00:40,595:INFO(67)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController -
+2015-11-24 13:00:51,705:INFO(71)http-bio-10005-exec-1 com.boxamazing.admin.controller.pay.AlipayController - 参数校验结果：true
+详细数据：2015110321001004760057065297^0.01^SUCCESS
+ 详细数据：2015110321001004760056500739^0.01^TRADE_HAS_CLOSED
+退款不需要考虑库存
+
+
+========
+项目支持--项目失败才可以退款&已付款的订单
+ 
+vpn:https://portal.shadowsocks.com/cart.php
+账户：275070023@qq.com  / chaojie
+http://ip:1080/pac
+
+
+系统消息：增加邮件模版
+
+
+修改后台项目 2-5张图片
+
+订单号
+
+订单状态 已退款 退款成功
+
+
+=========订单退款====================
+前台-订单关闭-增加库存
+定时任务-订单失效-增加库存
+订单关闭-支付宝付款成功-不考虑库存
+
+============================
+支付宝商家服务电话
+0571-88158090
+
+
+======2015-11-27-下周任务--
+1.充值 提现
+2.系统消息发送
+
+Congratulations, shadowsocks-libev install completed!
+Your Server IP:  121.40.56.87 
+Your Server Port:  8989 
+Your Password:  hechaojie 
+Your Local IP:  127.0.0.1 
+Your Local Port:  1080 
+Your Encryption Method:  aes-256-cfb 
+
+010-65018866-502
+
+========支付宝付款============
+1.提交订单 退款
+2.手续费 即时扣除
+即时到帐接口
+批量付款到支付宝账户接口
+3.验证用户输入的支付宝账户是否正确  支付宝没有提供验证支付宝合法的接口
+每月有2w免费额度20000  （只针对批量付款到支付宝账户  给别人转账）
+
+手续费1-25元
+
+支付宝扣钱手续费规则： 钱先到支付宝账户，再从支付宝扣除手续费
+
+
+==================
+测试提现
+广发 2015-12-1 14:53 充值1元
+2015-12-1 14：55 招商充值1元
+2015-12-1 14：56 交通信用卡充值1元
+2015-12-1 14：58 工行储蓄卡充值1元
+2015-12-1 14：59 余额充值1元
+2015-12-1 15：02 广发充值5元
+
+
+---充值 昨天
+---优惠卷完成 今天
+
+
+
+========20151202=========
+上传图片问题 没有校验空值
+
+2015-12-07
+1.360浏览器兼容模式 分页不可以
+2.去掉结束预热功能
+
+分机号：539 
+
+
+
+

@@ -1,0 +1,38 @@
+#安装某些软件包（可能是成功关键之一）
+yum install libICE-devel libSM-devel libX11-devel libXp-devel libXt-devel libXtst-devel libXext-devel
+ 
+2.2 安装 Confluence
+#先添加confluence用户，第一次安装时并没有这一步，不排除5.x版本已经自行帮用户添加？（安装jira6.2时已确定软件已经自行添加对应的用户）（可能是成功关键之一）
+useradd --create-home -c "Confluence role account" confluence
+ 
+#安装Confluence包，以下目录和文件名，只作代表本次安装，安装过程，全部选择默认选项，
+#第一次安装估计是指定了其他目录，而新建目录没有设置对应用户的访问权限（不确定）（确定是成功关键之一）
+ 
+#进入软件包所在目录，先给软件包加执行权限
+chmod +x atlassian-confluence-5.1.2-x64.bin
+#安装命令
+./atlassian-confluence-5.1.2-x64.bin
+#将/opt/atlassian/confluence (安装完后的程序目录)的拥有者改为confluence这个账号（默认root）
+chown -R confluence: /opt/atlassian/confluence
+ 
+#进入安装目录,启动confluence（tomcat）
+cd /opt/atlassian/confluence/bin/
+#启动，关闭
+./startup.sh 启动
+./shutdown.sh 关闭
+ 
+
+#登录数据库
+mysql -u root -p
+#创建数据库，注意命令最后，要加分号代表结束命令   ；
+create database confluence character set utf8;
+#分配权限,红字为confluence数据库的登录帐号及密码
+grant all privileges on confluence.* to confluence@localhost identified by 'Abc123456' with grant option;
+#刷新
+flush privileges;
+#退出
+quit或exit
+ 
+ 
+ www.cnblogs.com/wuduan/p/4027542.html
+ 
